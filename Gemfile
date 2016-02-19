@@ -10,3 +10,7 @@ group :test, :development do
   gem 'metadata-json-lint',                 require: false
   gem 'librarian-puppet',                   require: false
 end
+
+group :development do
+  gem 'puppet-blacksmith'
+end
