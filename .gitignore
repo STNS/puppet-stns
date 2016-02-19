@@ -1,0 +1,23 @@
+# spec
+spec/fixtures/
+
+# Environment normalization
+/.bundle/
+/vendor/bundle
+
+/lib/bundler/man/
+
+# for a library or gem, you might want to ignore these files since the code is
+Gemfile.lock
+
+# Vagrant
+.vagrant/
+
+## librarian-puppet
+Puppetfile.lock
+.librarian
+.tmp
+tests/modules/
+
+# Beaker
+log/
