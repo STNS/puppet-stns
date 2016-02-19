@@ -4,6 +4,8 @@
 # stns::repo is to setup repository.
 class stns::repo {
 
+  $gpgkey_url = 'https://repo.stns.jp/gpg/GPG-KEY-stns'
+
   case $::osfamily {
     'RedHat': {
       yumrepo { 'stns':
@@ -12,7 +14,7 @@ class stns::repo {
         baseurl  => 'http://repo.stns.jp/centos/$basearch',
         enabled  => 1,
         gpgcheck => 1,
-        gpgkey   => 'https://repo.stns.jp/gpg/GPG-KEY-stns',
+        gpgkey   => $gpgkey_url,
       }
     }
     default: {
