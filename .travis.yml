@@ -8,7 +8,6 @@ before_script: bundle exec puppet --version
 script: bundle exec rake
 env:
 - PUPPET_VERSION='~> 3.8.0'
-- PUPPET_VERSION='~> 4.0.0'
 - PUPPET_VERSION='~> 4.3.0'
 matrix:
   exclude:
