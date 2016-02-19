@@ -23,4 +23,14 @@ describe 'stns::client class' do
     its(:content) { should match /shadow:\s+files\s+stns$/ }
     its(:content) { should match /group:\s+files\s+stns$/ }
   end
+
+  describe file('/etc/stns/libnss_stns.conf') do
+    it { should be_file }
+    its(:content) { should match /^api_end_point\s+=\s+\[.+\]$/ }
+    its(:content) { should match /^user\s+=\s+".+"$/ }
+    its(:content) { should match /^password\s+=\s+".+"$/ }
+    its(:content) { should match /^wrapper_path\s+=\s+".+"$/ }
+    its(:content) { should match /^chain_ssh_wrapper\s+=\s+".+"$/ }
+    its(:content) { should match /^ssl_verify\s+=\s+(true|false)$/ }
+  end
 end
