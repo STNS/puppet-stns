@@ -44,5 +44,6 @@
 #
 class stns {
 
+  include stns::repo
 
 }
