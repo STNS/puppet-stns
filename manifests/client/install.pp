@@ -5,4 +5,8 @@
 
 class stns::client::install {
 
+  package { 'libnss-stns':
+    ensure => present,
+  }
+
 }
