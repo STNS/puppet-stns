@@ -5,4 +5,9 @@
 
 class stns::server::service {
 
+  service { 'stns':
+    ensure => running,
+    enable => true,
+  }
+
 }
