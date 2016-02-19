@@ -17,4 +17,10 @@ describe 'stns::client class' do
   describe package('libnss-stns') do
     it { should be_installed }
   end
+
+  describe file('/etc/nsswitch.conf') do
+    its(:content) { should match /passwd:\s+files\s+stns$/ }
+    its(:content) { should match /shadow:\s+files\s+stns$/ }
+    its(:content) { should match /group:\s+files\s+stns$/ }
+  end
 end
