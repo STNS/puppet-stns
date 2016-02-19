@@ -13,4 +13,14 @@ describe 'stns class' do
     expect(result.exit_code).not_to eq 4
     expect(result.exit_code).not_to eq 6
   end
+
+  context 'RedHat', :if => host_inventory['platform'] == 'redhat' do
+    describe yumrepo('stns') do
+      it { should be_enabled }
+    end
+
+    describe file('/etc/yum.repos.d/stns.repo') do
+      it { should be_file }
+    end
+  end
 end
