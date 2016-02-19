@@ -15,6 +15,9 @@ RSpec.configure do |c|
     hosts.each do |host|
       apply_manifest_on(host, 'package { "tar": }')
       on(host, puppet('module', 'install', 'puppetlabs-stdlib'))
+      if host.platform.match /(debian|ubuntu)/
+        on(host, puppet('module', 'install', 'puppetlabs-apt'))
+      end
     end
   end
 end

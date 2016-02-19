@@ -14,13 +14,20 @@ describe 'stns class' do
     expect(result.exit_code).not_to eq 6
   end
 
-  context 'RedHat', :if => host_inventory['platform'] == 'redhat' do
+  context 'RedHat', :if => os[:family] == 'redhat' do
     describe yumrepo('stns') do
       it { should be_enabled }
     end
 
     describe file('/etc/yum.repos.d/stns.repo') do
       it { should be_file }
+    end
+  end
+
+  context 'Debian', :if => os[:family] =~ /^(ubuntu|debian)$/ do
+    describe file('/etc/apt/sources.list.d/stns.list') do
+      it { should be_file }
+      its(:content) { should match %r|^deb\s+http://repo.stns.jp/debian/\s+stns\s+main$| }
     end
   end
 end

@@ -1,0 +1,11 @@
+HOSTS:
+  debian-jessie-x64:
+    platform: debian-jessie-x86_64
+    image: debian:jessie
+    hypervisor: docker
+    docker_image_commands:
+      - 'apt-get install -y sudo wget'
+CONFIG:
+  type: foss
+  masterless: true
+  log_level: verbose
