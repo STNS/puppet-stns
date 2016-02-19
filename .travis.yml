@@ -29,6 +29,11 @@ matrix:
     services: docker
     env: BEAKER_set=jessie
     script: bundle exec rake beaker
+  - rvm: default
+    sudo: required
+    services: docker
+    env: BEAKER_set=trusty
+    script: bundle exec rake beaker
 notifications:
   slack:
     secure: k+VcP+ZaXMELr8Y6VmF1oOhWQmlOgkwMDluRwrRGLo4e8BUI/AokZibhAx2t+Pv39IChEwd7kZov4IZrAAW3MIilsL3YYVpe7BDOixe8U5D4dj9hu3AehNSyWuukABp/vbzWnVVVkC6Wh8gAqBkV0WzY6P65MCzUv/gNivBIvCLoOVyP3pf0F3sNM8LPMNVkDxcR0ZRpXro709G2clSOFpU05AlgO/Dk0SzBI92MVebiLqUbnanXwCkS9IFiNjZggmkzASrpdZIAKSLdmznNUQR1aNfPOS9a7jbkscPqY6bjmta74q2KknL4gWYUIkxqqyyKPK/LhzzcVx5WAAw1BkiYDhTUyPQZ6dxvwaiElPEziXqz9bdxdkSl3urEW+J/ioWXD4s8d7w7IK6VWwENobQ4dWnm4qNvaNl6p9XX6RlFvC7BsqeD8qXT1myDRW1czB8b6dufzwJL+UykaDvvFUl25plJjj4SnnXLXL3POT6tEG2LHB7YIjw4UA0PMtDJ5eOjKQNmm6QEL6MPBhzP++cBcoAWT9XeuEVtRm9vz9bHEJZMJtWV1maVxyXnj6DejUc7KIF2AieJeby3sK9d57/CKlRwhYAkfTZM1iM5RszSQStTuT5KjOWz4LI3W32mLGEkKjPeUenYOi4swKdgJMkubDxjEZzP4pDBk0ZhSaA=

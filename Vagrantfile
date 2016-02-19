@@ -39,6 +39,7 @@ platforms = {
   centos6: 'puppetlabs/centos-6.6-64-puppet',
   centos7: 'puppetlabs/centos-7.2-64-puppet',
   jessie: 'puppetlabs/debian-8.2-64-puppet',
+  trusty: 'puppetlabs/ubuntu-14.04-64-puppet',
 }
 
 env = 'tests'

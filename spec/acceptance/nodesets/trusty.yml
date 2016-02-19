@@ -3,7 +3,9 @@ HOSTS:
     platform: ubuntu-trusty-x86_64
     image: ubuntu:trusty
     hypervisor: docker
+    docker_image_commands:
+      - 'apt-get install -y sudo wget'
 CONFIG:
   type: foss
   masterless: true
-  # log_level: debug
+  log_level: verbose
