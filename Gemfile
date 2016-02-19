@@ -12,5 +12,10 @@ group :test, :development do
 end
 
 group :development do
-  gem 'puppet-blacksmith'
+  gem 'puppet-blacksmith', require: false
+end
+
+group :system_tests do
+  gem 'beaker',       require: false
+  gem 'beaker-rspec', require: false
 end
