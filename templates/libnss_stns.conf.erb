@@ -1,0 +1,18 @@
+# This file is managed by Puppet. DO NOT EDIT.
+<% if @api_end_point.is_a?(Hash) -%>
+api_end_point = [<%= @api_end_point.map{|a| "\"#{e}\""}.join(',') %>]
+<% else -%>
+api_end_point = ["<%= @api_end_point %>"]
+<% end -%>
+
+# support basic auth
+user = "<%= @user %>"
+password = "<%= @password %>"
+
+# stns access wrapper
+wrapper_path = "<%= @wrapper_path %>"
+
+# stns-key-wrapper on failure , this try chain_ssh_wrapper command
+chain_ssh_wrapper = "<%= @chain_ssh_wrapper %>"
+
+ssl_verify = <%= @ssl_verify %>
