@@ -1,0 +1,9 @@
+HOSTS:
+  ubuntu-trusty-x64:
+    platform: ubuntu-trusty-x86_64
+    image: ubuntu:trusty
+    hypervisor: docker
+CONFIG:
+  type: foss
+  masterless: true
+  # log_level: debug
