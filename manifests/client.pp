@@ -28,4 +28,12 @@ class stns::client (
   Class['stns::client::install']
   -> Class['stns::client::config']
 
+  ensure_packages('nscd')
+  ensure_resource('service','nscd',
+  {
+    'ensure' => 'running',
+    'enable' => true,
+  }
+  )
+
 }

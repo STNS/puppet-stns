@@ -18,6 +18,15 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
+  describe package('nscd') do
+    it { should be_installed }
+  end
+
+  describe service('nscd') do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
   describe package('libnss-stns') do
     it { should be_installed }
   end
