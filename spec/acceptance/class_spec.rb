@@ -14,6 +14,11 @@ describe 'stns class' do
     expect(result.exit_code).not_to eq 6
   end
 
+  it "should run a second time without changes" do
+    result = apply_manifest(manifest)
+    expect(result.exit_code).to eq 0
+  end
+
   context 'RedHat', :if => os[:family] == 'redhat' do
     describe yumrepo('stns') do
       it { should be_enabled }
