@@ -17,7 +17,7 @@ class stns::server (
   validate_hash($users)
   validate_hash($groups)
 
-  require stns
+  require stns::repo
 
   include stns::server::install
   include stns::server::config

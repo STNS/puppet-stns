@@ -19,7 +19,7 @@ class stns::client (
   }
   validate_bool($ssl_verify)
 
-  require stns
+  require stns::repo
 
   include stns::client::install
   include stns::client::config
