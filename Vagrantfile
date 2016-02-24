@@ -62,9 +62,12 @@ Vagrant.configure(2) do |config|
     puppet.environment      = env
     puppet.module_path      = module_path
     puppet.options          = [
+      '--detailed-exitcodes',
+      '--show_diff',
       '--verbose',
-      #'--debug',
+      # '--debug',
     ]
+    puppet.hiera_config_path = "#{env}/hiera.yaml"
   end
 
   platforms.each do |dist, box|

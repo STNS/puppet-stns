@@ -9,4 +9,5 @@
 # Learn more about module testing here:
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-include stns::repo
+include stns::client
+include stns::server
