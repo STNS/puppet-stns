@@ -23,7 +23,8 @@ class stns::server (
   include stns::server::config
   include stns::server::service
 
-  Class['stns::server::install']
+  Class['stns::repo']
+  -> Class['stns::server::install']
   -> Class['stns::server::config']
   ~> Class['stns::server::service']
 

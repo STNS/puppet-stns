@@ -25,7 +25,8 @@ class stns::client (
   include stns::client::config
   include stns::client::nsswitch
 
-  Class['stns::client::install']
+  Class['stns::repo']
+  -> Class['stns::client::install']
   -> Class['stns::client::config']
 
   ensure_packages('nscd')
