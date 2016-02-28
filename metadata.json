@@ -7,6 +7,12 @@
   "source": "https://github.com/hfm/puppet-stns",
   "project_page": "https://github.com/hfm/puppet-stns",
   "issues_url": "https://github.com/hfm/puppet-stns/issues",
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.0.0 < 5.0.0"
+    }
+  ],
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
