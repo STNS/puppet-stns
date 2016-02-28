@@ -26,6 +26,6 @@ class stns::server (
   Class['stns::repo']
   -> Class['stns::server::install']
   -> Class['stns::server::config']
-  ~> Class['stns::server::service']
+  -> Class['stns::server::service']
 
 }
