@@ -1,6 +1,6 @@
 # This file is managed by Puppet. DO NOT EDIT.
 <% if @api_end_point.is_a?(Array) -%>
-api_end_point = [<%= @api_end_point.map{|api| "\"#{api}\""}.join(',') %>]
+api_end_point = [<%= @api_end_point.map{|api| "\"#{api}\""}.join(', ') %>]
 <% else -%>
 api_end_point = ["<%= @api_end_point %>"]
 <% end -%>
