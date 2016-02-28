@@ -4,13 +4,3 @@ include = "/etc/stns/conf.d/*"
 
 user = "<%= @user %>"
 password = "<%= @password %>"
-
-<% @users.each do |u| -%>
-<%= "[users.#{u['name']}]" %>
-<%= u.reject {|k,v| k == 'name'}.map {|k,v| [k, v.inspect].join(' = ') }.join("\n") %>
-<% end unless @users.empty? -%>
-
-<% @groups.each do |u| -%>
-<%= "[groups.#{u['name']}]" %>
-<%= u.reject {|k,v| k == 'name'}.map {|k,v| [k, v.inspect].join(' = ') }.join("\n") %>
-<% end unless @groups.empty? -%>

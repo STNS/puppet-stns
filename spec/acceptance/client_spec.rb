@@ -18,23 +18,8 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
-  describe package('nscd') do
-    it { should be_installed }
-  end
-
-  describe service('nscd') do
-    it { should be_enabled }
-    it { should be_running }
-  end
-
   describe package('libnss-stns') do
     it { should be_installed }
-  end
-
-  describe file('/etc/nsswitch.conf') do
-    its(:content) { should match /passwd:\s+files\s+stns$/ }
-    its(:content) { should match /shadow:\s+files\s+stns$/ }
-    its(:content) { should match /group:\s+files\s+stns$/ }
   end
 
   describe file('/etc/stns/libnss_stns.conf') do

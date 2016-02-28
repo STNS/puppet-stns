@@ -7,15 +7,11 @@ class stns::server (
   $port     = 1104,
   $user     = undef,
   $password = undef,
-  $users    = {},
-  $groups   = {},
 ) {
 
   validate_integer($port)
   validate_string($user)
   validate_string($password)
-  validate_hash($users)
-  validate_hash($groups)
 
   require stns::repo
 
