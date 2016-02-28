@@ -1,83 +1,190 @@
-# stns
+# puppet-stns
 
 #### Table of Contents
 
 1. [Description](#description)
 1. [Setup - The basics of getting started with stns](#setup)
-    * [What stns affects](#what-stns-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with stns](#beginning-with-stns)
+  - [Setup requirements](#setup-requirements)
+  - [Beginning with stns](#beginning-with-stns)
 1. [Usage - Configuration options and additional functionality](#usage)
+  - [Configuring stns::server](#configuring-stnsserver)
+  - [Configuring stns::client](#configuring-stnsclient)
+  - [Configuring modules from Hiera](#configuring-modules-from-hiera)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+  - [Classes](#classes)
+    - [Public Classes](#public-classes)
+    - [Private Classes](#private-classes)
+  - [Parameters](#parameters)
+    - [stns::server](#stnsserver)
+    - [stns::client](#stnsclient)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
+  - [Running tests](#running-tests)
+  - [Testing quickstart](#testing-quickstart)
+  - [Smoke tests](#smoke-tests)
+1. [TODO](#todo)
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
-
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+The STNS module handles installing, configuring, and running [STNS](https://github.com/STNS/STNS) and [libnss_stns](https://github.com/STNS/libnss_stns).
 
 ## Setup
 
-### What stns affects **OPTIONAL**
+### Setup Requirements
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+The STNS module requires the following puppet modules:
 
-If there's more that they should know about, though, this is the place to mention:
+- [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib): version 4.0 or newer.
+- [puppetlabs-apt](https://forge.puppetlabs.com/puppetlabs/apt): version 2.0 or newer (only Debian-based distributions).
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+### Beginning with STNS
 
-### Setup Requirements **OPTIONAL**
+To install the STNS server with default parameters, declare the `stns::server` class.
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+```puppet
+include ::stns::server
+```
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
+To install the STNS client (libnss\_stns) with default parameters, declare the `stns::client` class.
 
-### Beginning with stns
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+```puppet
+include ::stns::client
+```
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+### Configuring stns::server
+
+```puppet
+class { '::stns::server':
+  port     => 1104,
+  user     => 'sample',
+  password => 's@mp1e',
+}
+```
+
+### Configuring stns::client
+
+```puppet
+class { '::stns::client':
+  api_end_point     => [
+    'http://stns1.example.jp:1104',
+    'http://stns2.example.jp:1104',
+  ],
+  user              => 'sample',
+  password          => 's@mp1e',
+  wrapper_path      => '/usr/local/bin/stns-query-wrapper',
+  chain_ssh_wrapper => '/usr/libexec/openssh/ssh-ldap-wrapper',
+  ssl_verify        => true,
+}
+```
+
+### Configuring modules from Hiera
+
+```yaml
+---
+stns::server::port: 1104
+stns::server::user: sample
+stns::server::password: s@mp1e
+
+stns::client::api_end_point:
+  - 'http://stns1.example.jp:1104'
+  - 'http://stns2.example.jp:1104'
+stns::client::user: sample
+stns::client::password: s@mp1e
+stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
+stns::client::chain_ssh_wrapper: null
+stns::client::ssl_verify: true
+```
 
 ## Reference
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+### Classes
+
+#### Public Classes
+
+- [`stns::server`](#stnsserver): Installs and configures STNS.
+- [`stns::client`](#stnsclient): Installs and configures libnss\_stns.
+
+#### Private Classes
+
+- `stns::repo`: Setup STNS repository.
+- `stns::server::install`: Installs STNS package.
+- `stns::server::config`: Configures STNS.
+- `stns::server::server`: Manages service.
+- `stns::client::install`: Installs packages for libnss\_stns.
+- `stns::client::config`: Configures
+
+### Parameters
+
+#### stns::server
+
+- `port`: Specifies a listen port listen. Valid options: a number of a port number. Default: 1104.
+- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
+- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
+
+#### stns::client
+
+- `api_end_point`: Valid options: Default: 'http://localhost:1104'.
+- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
+- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
+- `wrapper_path`: Valid options: absolute path. Default: '/usr/local/bin/stns-query-wrapper'.
+- `chain_ssh_wrapper`: Default: 'undef'.
+- `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+This module has been tested on:
+
+- RedHat Enterprise Linux 5, 6, 7
+- CentOS 5, 6, 7
+- Scientific Linux 5, 6, 7
+- Debian 7, 8
+- Ubuntu 12.04, 14.04
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+### Running tests
 
-## Release Notes/Contributors/Etc. **Optional**
+The STNS puppet module contains tests for both [rspec-puppet](http://rspec-puppet.com/) (unit tests) and [beaker-rspec](https://github.com/puppetlabs/beaker-rspec) (acceptance tests) to verify functionality. For detailed information on using these tools, please see their respective documentation.
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+#### Testing quickstart
+
+- Unit tests:
+
+```console
+$ bundle install
+$ bundle exec rake
+```
+
+- Acceptance tests:
+
+```console
+# Set your DOCKER_HOST variable
+$ eval "$(docker-machine env default)"
+
+# List available beaker nodesets
+$ bundle exec rake beaker_nodes
+centos6
+centos7
+jessie
+trusty
+
+# Run beaker acceptance tests
+$ BEAKER_set=centos7 bundle exec rake beaker
+```
+
+#### Smoke tests
+
+You can run smoke tests using [Vagrant](https://www.vagrantup.com/):
+
+```console
+$ vagrant up <vm> --provision
+```
+
+### TODO
+
+- configuring nscd
+- configuring nsswitch.conf
+- `stns::server::users`
+- `stns::server::groups`
