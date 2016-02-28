@@ -8,6 +8,20 @@ describe 'stns::server class' do
         user     => 'sample',
         password => 's@mp1e',
       }
+
+      ::stns::server::users { 'sandbox':
+        id         => 1001,
+        group_id   => 1001,
+        directory  => '/home/sandbox',
+        shell      => '/bin/bash',
+        keys       => 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
+        link_users => 'foo',
+      }
+
+      ::stns::server::groups { 'sandbox':
+        id    => 1001,
+        users => 1001,
+      }
     EOS
   }
 
@@ -43,5 +57,19 @@ describe 'stns::server class' do
   describe service('stns') do
     it { should be_enabled }
     it { should be_running }
+  end
+
+  describe file('/etc/stns/conf.d/users.conf') do
+    it { should be_file }
+    its(:content) { should match /^port\s+=\s+\d+$/ }
+    its(:content) { should match /^user\s+=\s+".*"$/ }
+    its(:content) { should match /^password\s+=\s+".*"$/ }
+  end
+
+  describe file('/etc/stns/conf.d/groups.conf') do
+    it { should be_file }
+    its(:content) { should match /^port\s+=\s+\d+$/ }
+    its(:content) { should match /^user\s+=\s+".*"$/ }
+    its(:content) { should match /^password\s+=\s+".*"$/ }
   end
 end
