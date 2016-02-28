@@ -4,9 +4,9 @@
   "author": "hfm",
   "summary": "This puppet module install and configure STNS (Simple Toml Name Service).",
   "license": "MIT",
-  "source": "https://github.com/hfm/puppet-stns",
-  "project_page": "https://github.com/hfm/puppet-stns",
-  "issues_url": "https://github.com/hfm/puppet-stns/issues",
+  "source": "https://github.com/STNS/puppet-stns",
+  "project_page": "https://github.com/STNS/puppet-stns",
+  "issues_url": "https://github.com/STNS/puppet-stns/issues",
   "requirements": [
     {
       "name": "puppet",
