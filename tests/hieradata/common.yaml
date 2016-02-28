@@ -1,11 +1,11 @@
 ---
 stns::client::api_end_point: http://localhost:1104
 stns::client::user: sample
-stns::client::password: s@mple
+stns::client::password: s@mp1e
 stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
 stns::client::chain_ssh_wrapper: null
 stns::client::ssl_verify: true
 
 stns::server::port: 1104
-stns::server::user: null
-stns::server::password: null
+stns::server::user: sample
+stns::server::password: s@mp1e
