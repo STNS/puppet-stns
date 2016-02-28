@@ -3,7 +3,11 @@ require 'spec_helper_acceptance'
 describe 'stns::server class' do
   let(:manifest) {
     <<-EOS
-      include ::stns::server
+      class { '::stns::server':
+        port     => 1104,
+        user     => 'sample',
+        password => 's@mp1e',
+      }
     EOS
   }
 
@@ -31,9 +35,9 @@ describe 'stns::server class' do
 
   describe file('/etc/stns/stns.conf') do
     it { should be_file }
-    its(:content) { should match /^port\s+=\s+\d+$/ }
-    its(:content) { should match /^user\s+=\s+".*"$/ }
-    its(:content) { should match /^password\s+=\s+".*"$/ }
+    its(:content) { should match /^port\s+=\s+1104$/ }
+    its(:content) { should match /^user\s+=\s+"sample"$/ }
+    its(:content) { should match /^password\s+=\s+"s@mp1e"$/ }
   end
 
   describe service('stns') do
