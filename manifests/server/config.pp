@@ -3,7 +3,7 @@
 #
 # stns::server::config is to configure stns.
 
-class stns::server::config  (
+class stns::server::config (
   $port     = $stns::server::port,
   $user     = $stns::server::user,
   $password = $stns::server::password,
