@@ -16,4 +16,9 @@ define stns::server::groups (
     fail('$users must be either a string or an array.')
   }
 
+  ::stns_server_groups {
+    id    => $id,
+    users => $users,
+  }
+
 }
