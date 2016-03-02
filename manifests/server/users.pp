@@ -27,4 +27,13 @@ define stns::server::users (
     fail('$link_users must be either a string or an array.')
   }
 
+  ::stns_server_users {
+    id         => $id,
+    group_id   => $group_id,
+    directory  => $directory,
+    shell      => $shell,
+    keys       => $keys,
+    link_users => $link_users,
+  }
+
 }
