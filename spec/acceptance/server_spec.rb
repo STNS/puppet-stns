@@ -20,7 +20,7 @@ describe 'stns::server class' do
 
       ::stns::server::groups { 'sandbox':
         id    => 1001,
-        users => 1001,
+        users => 'sandbox',
       }
     EOS
   }
