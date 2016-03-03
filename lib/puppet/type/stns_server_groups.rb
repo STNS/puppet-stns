@@ -14,6 +14,14 @@ Puppet::Type.newtype(:stns_server_groups) do
 
   newparam(:id, :namevar => true) do
     desc 'The unique group you want to manage.'
+
+    munge do |v|
+      if v.is_a?(String) and v.match(/^[-0-9]+$/)
+        v.to_i
+      else
+        v
+      end
+    end
   end
 
   newparam(:users) do

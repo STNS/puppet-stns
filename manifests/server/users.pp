@@ -14,10 +14,16 @@ define stns::server::users (
 
   require stns::server
 
-  validate_integer($id)
-  validate_integer($group_id)
   validate_absolute_path($directory)
   validate_absolute_path($shell)
+
+  if !(is_string($id) or is_integer($id)) {
+    fail('$id must be either a string or an integer.')
+  }
+
+  if !(is_string($group_id) or is_integer($group_id)) {
+    fail('$group_id must be either a string or an integer.')
+  }
 
   if !(is_string($keys) or is_array($keys)) {
     fail('$keys must be either a string or an array.')
