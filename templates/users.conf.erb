@@ -1,0 +1,4 @@
+<% @users.each do |u| -%>
+<%= "[users.#{u['name']}]" %>
+<%= u.reject {|k,v| k == 'name'}.map {|k,v| [k, v.inspect].join(' = ') }.join("\n") %>
+<% end unless @users.empty? -%>
