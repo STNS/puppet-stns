@@ -33,7 +33,7 @@ define stns::server::users (
     fail('$link_users must be either a string or an array.')
   }
 
-  stns_server_users {
+  stns_server_users { $title:
     id         => $id,
     group_id   => $group_id,
     directory  => $directory,
