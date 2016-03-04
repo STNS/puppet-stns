@@ -13,7 +13,7 @@ Puppet::Type.newtype(:stns_server_groups) do
   ensurable
 
   newparam(:id, :namevar => true) do
-    desc 'The unique group you want to manage.'
+    desc 'The group ID; must be specified numerically.'
 
     munge do |v|
       if v.is_a?(String) and v.match(/^[-0-9]+$/)
@@ -25,6 +25,6 @@ Puppet::Type.newtype(:stns_server_groups) do
   end
 
   newparam(:users) do
-    desc 'The user ID of the groups.'
+    desc 'Specify users contained in a group; must be specified numerically.'
   end
 end

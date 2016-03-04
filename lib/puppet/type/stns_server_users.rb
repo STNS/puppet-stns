@@ -17,7 +17,7 @@ Puppet::Type.newtype(:stns_server_users) do
   ensurable
 
   newparam(:id, :namevar => true) do
-    desc 'The unique user id you want to manage.'
+    desc 'The unique user id you want to manage; must be specified numerically.'
 
     munge do |v|
       if v.is_a?(String) and v.match(/^[-0-9]+$/)
@@ -29,7 +29,7 @@ Puppet::Type.newtype(:stns_server_users) do
   end
 
   newparam(:group_id) do
-    desc 'GID.'
+    desc 'The groups ID to which the user belongs; must be specified numerically.'
 
     munge do |v|
       if v.is_a?(String) and v.match(/^[-0-9]+$/)
@@ -41,15 +41,15 @@ Puppet::Type.newtype(:stns_server_users) do
   end
 
   newparam(:directory) do
-    desc 'The home directory of user.'
+    desc 'The home directory of the user.'
   end
 
   newparam(:shell) do
-    desc 'shell'
+    desc "The user's login shell."
   end
 
   newparam(:keys) do
-    desc 'The keys ID of the users.'
+    desc "Specify user attributes in an array of key = value pairs."
   end
 
   newparam(:link_users) do
