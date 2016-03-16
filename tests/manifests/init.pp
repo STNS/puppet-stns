@@ -12,7 +12,7 @@
 include stns::client
 include stns::server
 
-stns::server::groups { 'sample':
+stns::server::groups { 'samplegroups':
   id    => 1001,
   users => 'sample',
 }
