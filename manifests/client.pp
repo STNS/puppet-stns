@@ -9,6 +9,8 @@ class stns::client (
   $wrapper_path      = '/usr/local/bin/stns-query-wrapper',
   $chain_ssh_wrapper = undef,
   $ssl_verify        = true,
+
+  $handle_nsswitch   = false,
 ) {
 
   validate_string($user)
@@ -18,6 +20,7 @@ class stns::client (
     validate_absolute_path($chain_ssh_wrapper)
   }
   validate_bool($ssl_verify)
+  validate_bool($handle_nsswitch)
 
   require stns::repo
 
@@ -27,5 +30,19 @@ class stns::client (
   Class['stns::repo']
   -> Class['stns::client::install']
   -> Class['stns::client::config']
+
+  if $handle_nsswitch {
+    augeas { 'nsswitch stns':
+      context => '/files/etc/nsswitch.conf',
+      changes => [
+        "set *[self::database = 'passwd']/service[1] files",
+        "set *[self::database = 'passwd']/service[2] stns",
+        "set *[self::database = 'shadow']/service[1] files",
+        "set *[self::database = 'shadow']/service[2] stns",
+        "set *[self::database = 'group']/service[1] files",
+        "set *[self::database = 'group']/service[2] stns",
+      ],
+    }
+  }
 
 }

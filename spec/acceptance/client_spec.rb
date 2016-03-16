@@ -31,4 +31,10 @@ describe 'stns::client class' do
     its(:content) { should match /^chain_ssh_wrapper\s+=\s+".*"$/ }
     its(:content) { should match /^ssl_verify\s+=\s+(true|false)$/ }
   end
+
+  describe file('/etc/nsswitch.conf') do
+    its(:content) { should match /^\s*passwd:\s+files\s+stns/ }
+    its(:content) { should match /^\s*shadow:\s+files\s+stns/ }
+    its(:content) { should match /^\s*group:\s+files\s+stns/ }
+  end
 end
