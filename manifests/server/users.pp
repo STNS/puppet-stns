@@ -4,7 +4,6 @@
 # The stns::server::users defined type is to configure STNS users.
 
 define stns::server::users (
-  $ensure     = file,
   $id         = undef,
   $group_id   = undef,
   $directory  = undef,
@@ -13,7 +12,6 @@ define stns::server::users (
   $link_users = undef,
 ) {
 
-  validate_re($ensure,  ['file', 'present', 'absent'])
   validate_integer($id)
   validate_integer($group_id)
   validate_absolute_path($directory)
@@ -27,13 +25,9 @@ define stns::server::users (
     fail('$link_users must be either a string or an array.')
   }
 
-  file { "/etc/stns/conf.d/${title}.conf":
-    ensure  => $ensure,
-    content => template('stns/header.erb','stns/users.conf.erb'),
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    notify  => Service['stns'],
+  concat::fragment { $title:
+    target  => '/etc/stns/conf.d/users.conf',
+    content => template('stns/users.conf.erb'),
   }
 
 }

@@ -2,5 +2,6 @@ fixtures:
   forge_modules:
     stdlib: "puppetlabs/stdlib"
     apt: "puppetlabs/apt"
+    concat: "puppetlabs/concat"
   symlinks:
     stns: "#{source_dir}"
