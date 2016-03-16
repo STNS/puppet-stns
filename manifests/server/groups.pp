@@ -10,9 +10,7 @@ define stns::server::groups (
 
   require stns::server
 
-  if !(is_string($id) or is_integer($id)) {
-    fail('$id must be either a string or an integer.')
-  }
+  validate_integer($id)
 
   if !(is_string($users) or is_array($users)) {
     fail('$users must be either a string or an array.')
