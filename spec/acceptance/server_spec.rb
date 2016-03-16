@@ -61,15 +61,19 @@ describe 'stns::server class' do
 
   describe file('/etc/stns/conf.d/users.conf') do
     it { should be_file }
-    its(:content) { should match /^port\s+=\s+\d+$/ }
-    its(:content) { should match /^user\s+=\s+".*"$/ }
-    its(:content) { should match /^password\s+=\s+".*"$/ }
+    its(:content) { should match /^\[users.sandbox\]$/ }
+    its(:content) { should match /^id = 1001$/ }
+    its(:content) { should match /^group_id = 1001$/ }
+    its(:content) { should match /^directory = "\/home\/sandbox"$/ }
+    its(:content) { should match /^shell = "\/bin\/bash"$/ }
+    its(:content) { should match /^keys = \[".+"\]$/ }
+    its(:content) { should match /^link_users = \["foo"\]$/ }
   end
 
   describe file('/etc/stns/conf.d/groups.conf') do
     it { should be_file }
-    its(:content) { should match /^port\s+=\s+\d+$/ }
-    its(:content) { should match /^user\s+=\s+".*"$/ }
-    its(:content) { should match /^password\s+=\s+".*"$/ }
+    its(:content) { should match /^\[groups.sandbox\]$/ }
+    its(:content) { should match /^id = 1001$/ }
+    its(:content) { should match /^users = \["sandbox"\]$/ }
   end
 end
