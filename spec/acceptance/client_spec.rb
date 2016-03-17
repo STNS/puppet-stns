@@ -3,17 +3,26 @@ require 'spec_helper_acceptance'
 describe 'stns::client class' do
   let(:manifest) {
     <<-EOS
+      package { 'openssh-server':
+        ensure => installed,
+      }
+
+      service { 'sshd':
+        ensure => running,
+      }
+
       class { '::stns::client':
-        api_end_point     => [
+        api_end_point      => [
           'http://stns1.example.jp:1104',
           'http://stns2.example.jp:1104',
         ],
-        user              => 'sample',
-        password          => 's@mp1e',
-        wrapper_path      => '/usr/local/bin/stns-query-wrapper',
-        chain_ssh_wrapper => '/usr/libexec/openssh/ssh-ldap-wrapper',
-        ssl_verify        => true,
-        handle_nsswitch   => true,
+        user               => 'sample',
+        password           => 's@mp1e',
+        wrapper_path       => '/usr/local/bin/stns-query-wrapper',
+        chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
+        ssl_verify         => true,
+        handle_nsswitch    => true,
+        handle_sshd_config => true,
       }
     EOS
   }
@@ -47,5 +56,11 @@ describe 'stns::client class' do
     its(:content) { should match /^\s*passwd:\s+files\s+stns/ }
     its(:content) { should match /^\s*shadow:\s+files\s+stns/ }
     its(:content) { should match /^\s*group:\s+files\s+stns/ }
+  end
+
+  describe file('/etc/ssh/sshd_config') do
+    its(:content) { should match /^\s*PubkeyAuthentication\s+yes$/ }
+    its(:content) { should match %r|^\s*AuthorizedKeysCommand\s+/usr/local/bin/stns-key-wrapper$| }
+    its(:content) { should match /^\s*AuthorizedKeysCommandUser\s+root$/ }
   end
 end
