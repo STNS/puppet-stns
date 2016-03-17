@@ -48,12 +48,18 @@ class stns::client (
   }
 
   if $handle_sshd_config {
+    if ($::osfamily == 'RedHat' and $::operatingsystemmajrelease != '7') {
+      $cmd_user = 'AuthorizedKeysCommandRunAs'
+    } else {
+      $cmd_user = 'AuthorizedKeysCommandUser'
+    }
+
     augeas {'sshd_config with stns':
       context => '/files/etc/ssh/sshd_config',
       changes => [
         'set PubkeyAuthentication yes',
         'set AuthorizedKeysCommand /usr/local/bin/stns-key-wrapper',
-        'set AuthorizedKeysCommandUser root',
+        "set ${cmd_user} root",
       ],
       require => Package['openssh-server'],
       notify  => Service['sshd'],
