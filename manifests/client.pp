@@ -55,8 +55,8 @@ class stns::client (
     }
 
     $ssh_service = $::osfamily ? {
-      'RedHat' => 'sshd'
-      'Debian' => 'ssh'
+      'RedHat' => 'sshd',
+      'Debian' => 'ssh',
     }
 
     augeas {'sshd_config with stns':
