@@ -54,6 +54,11 @@ class stns::client (
       $cmd_user = 'AuthorizedKeysCommandUser'
     }
 
+    $ssh_service = $::osfamily ? {
+      'RedHat' => 'sshd'
+      'Debian' => 'ssh'
+    }
+
     augeas {'sshd_config with stns':
       context => '/files/etc/ssh/sshd_config',
       changes => [
@@ -62,7 +67,7 @@ class stns::client (
         "set ${cmd_user} root",
       ],
       require => Package['openssh-server'],
-      notify  => Service['sshd'],
+      notify  => Service[$ssh_service],
     }
   }
 
