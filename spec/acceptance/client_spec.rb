@@ -61,6 +61,6 @@ describe 'stns::client class' do
   describe file('/etc/ssh/sshd_config') do
     its(:content) { should match /^\s*PubkeyAuthentication\s+yes$/ }
     its(:content) { should match %r|^\s*AuthorizedKeysCommand\s+/usr/local/bin/stns-key-wrapper$| }
-    its(:content) { should match /^\s*AuthorizedKeysCommandUser\s+root$/ }
+    its(:content) { should match /^\s*AuthorizedKeysCommand(User|RunAs)\s+root$/ }
   end
 end
