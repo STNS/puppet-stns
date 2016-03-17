@@ -79,6 +79,7 @@ class { '::stns::client':
   wrapper_path      => '/usr/local/bin/stns-query-wrapper',
   chain_ssh_wrapper => '/usr/libexec/openssh/ssh-ldap-wrapper',
   ssl_verify        => true,
+  handle_nsswitch   => true,
 }
 ```
 
@@ -98,6 +99,7 @@ stns::client::password: s@mp1e
 stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
 stns::client::chain_ssh_wrapper: null
 stns::client::ssl_verify: true
+stns::client::handle_nsswitch: true
 ```
 
 ## Reference
@@ -134,6 +136,7 @@ stns::client::ssl_verify: true
 - `wrapper_path`: Valid options: absolute path. Default: '/usr/local/bin/stns-query-wrapper'.
 - `chain_ssh_wrapper`: Default: 'undef'.
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
+- `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 
 ## Limitations
 
