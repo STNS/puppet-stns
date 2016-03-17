@@ -1,3 +1,8 @@
+Release 0.3.0 (2016/03/17)
+---
+
+- Handle sshd\_config with augeas [#6](https://github.com/STNS/puppet-stns/pull/6)
+
 Release 0.2.0 (2016/03/17)
 ---
 
