@@ -91,15 +91,17 @@ stns::server::groups { 'sample':
 
 ```puppet
 class { '::stns::client':
-  api_end_point     => [
+  api_end_point      => [
     'http://stns1.example.jp:1104',
     'http://stns2.example.jp:1104',
   ],
-  user              => 'sample',
-  password          => 's@mp1e',
-  wrapper_path      => '/usr/local/bin/stns-query-wrapper',
-  chain_ssh_wrapper => '/usr/libexec/openssh/ssh-ldap-wrapper',
-  ssl_verify        => true,
+  user               => 'sample',
+  password           => 's@mp1e',
+  wrapper_path       => '/usr/local/bin/stns-query-wrapper',
+  chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
+  ssl_verify         => true,
+  handle_nsswitch    => true,
+  handle_sshd_config => true,
 }
 ```
 
@@ -119,6 +121,8 @@ stns::client::password: s@mp1e
 stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
 stns::client::chain_ssh_wrapper: null
 stns::client::ssl_verify: true
+stns::client::handle_nsswitch: true
+stns::client::handle_sshd_config: true
 ```
 
 ## Reference
@@ -158,6 +162,8 @@ stns::client::ssl_verify: true
 - `wrapper_path`: Valid options: absolute path. Default: '/usr/local/bin/stns-query-wrapper'.
 - `chain_ssh_wrapper`: Default: 'undef'.
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
+- `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
+- `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.
 
 #### Defined Types: `stns::server::users`
 
