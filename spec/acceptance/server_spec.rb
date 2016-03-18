@@ -12,8 +12,6 @@ describe 'stns::server class' do
       ::stns::server::users { 'sandbox':
         id         => 1001,
         group_id   => 1001,
-        directory  => '/home/sandbox',
-        shell      => '/bin/bash',
         keys       => 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
         link_users => 'foo',
       }
