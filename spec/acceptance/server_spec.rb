@@ -52,15 +52,7 @@ describe 'stns::server class' do
     its(:content) { should match /^port\s+=\s+1104$/ }
     its(:content) { should match /^user\s+=\s+"sample"$/ }
     its(:content) { should match /^password\s+=\s+"s@mp1e"$/ }
-  end
 
-  describe service('stns') do
-    it { should be_enabled }
-    it { should be_running }
-  end
-
-  describe file('/etc/stns/conf.d/users.conf') do
-    it { should be_file }
     its(:content) { should match /^\[users.sandbox\]$/ }
     its(:content) { should match /^id = 1001$/ }
     its(:content) { should match /^group_id = 1001$/ }
@@ -68,12 +60,14 @@ describe 'stns::server class' do
     its(:content) { should match /^shell = "\/bin\/bash"$/ }
     its(:content) { should match /^keys = \[".+"\]$/ }
     its(:content) { should match /^link_users = \["foo"\]$/ }
-  end
 
-  describe file('/etc/stns/conf.d/groups.conf') do
-    it { should be_file }
     its(:content) { should match /^\[groups.sandbox\]$/ }
     its(:content) { should match /^id = 1001$/ }
     its(:content) { should match /^users = \["sandbox"\]$/ }
+  end
+
+  describe service('stns') do
+    it { should be_enabled }
+    it { should be_running }
   end
 end

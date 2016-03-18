@@ -25,9 +25,10 @@ define stns::server::users (
     fail('$link_users must be either a string or an array.')
   }
 
-  concat::fragment { "users ${title}":
-    target  => '/etc/stns/conf.d/users.conf',
+  concat::fragment { "users_${title}":
+    target  => '/etc/stns/stns.conf',
     content => template('stns/users.conf.erb'),
+    order   => '41';
   }
 
 }

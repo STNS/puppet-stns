@@ -14,9 +14,10 @@ define stns::server::groups (
     fail('$users must be either a string or an array.')
   }
 
-  concat::fragment { "groups ${title}":
-    target  => '/etc/stns/conf.d/groups.conf',
+  concat::fragment { "groups_${title}":
+    target  => '/etc/stns/stns.conf',
     content => template('stns/groups.conf.erb'),
+    order   => '61',
   }
 
 }
