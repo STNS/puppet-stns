@@ -1,6 +1,6 @@
 {
   "name": "hfm-stns",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "author": "hfm",
   "summary": "This puppet module install and configure STNS (Simple Toml Name Service).",
   "license": "MIT",
