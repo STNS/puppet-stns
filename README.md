@@ -14,12 +14,10 @@
   - [Configuring stns::client](#configuring-stnsclient)
   - [Configuring modules from Hiera](#configuring-modules-from-hiera)
 1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-  - [Classes](#classes)
-    - [Public Classes](#public-classes)
-    - [Private Classes](#private-classes)
+  - [Public Classes](#public-classes)
+  - [Private Classes](#private-classes)
+  - [Defined Types](#defined-types)
   - [Parameters](#parameters)
-    - [stns::server](#stnsserver)
-    - [stns::client](#stnsclient)
 1. [Limitations - OS compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
   - [Running tests](#running-tests)
@@ -64,6 +62,29 @@ class { '::stns::server':
   user     => 'sample',
   password => 's@mp1e',
 }
+
+# Configures users and groups
+stns::server::users {
+  'foo':
+    id         => 1001,
+    group_id   => 1001,
+    directory  => '/home/foo',
+    shell      => '/bin/bash';
+
+  'bar':
+    id         => 1002,
+    group_id   => 1001,
+    directory  => '/home/bar',
+    shell      => '/bin/bash';
+}
+
+stns::server::groups { 'sample':
+  id    => 1001,
+  users => [
+    'foo',
+    'bar',
+  ],
+}
 ```
 
 ### Configuring stns::client
@@ -106,14 +127,12 @@ stns::client::handle_sshd_config: true
 
 ## Reference
 
-### Classes
-
-#### Public Classes
+### Public Classes
 
 - [`stns::server`](#stnsserver): Installs and configures STNS.
 - [`stns::client`](#stnsclient): Installs and configures libnss\_stns.
 
-#### Private Classes
+### Private Classes
 
 - `stns::repo`: Setup STNS repository.
 - `stns::server::install`: Installs STNS package.
@@ -122,15 +141,20 @@ stns::client::handle_sshd_config: true
 - `stns::client::install`: Installs packages for libnss\_stns.
 - `stns::client::config`: Configures
 
+### Defined Types
+
+- `stns::server::users`: Specifies a STNS users configuration file.
+- `stns::server::groups`: Specifies a STNS groups configuration file.
+
 ### Parameters
 
-#### stns::server
+#### Class: `stns::server`
 
 - `port`: Specifies a listen port listen. Valid options: a number of a port number. Default: 1104.
 - `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
 - `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
 
-#### stns::client
+#### Class: `stns::client`
 
 - `api_end_point`: Valid options: Default: 'http://localhost:1104'.
 - `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
@@ -140,6 +164,22 @@ stns::client::handle_sshd_config: true
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 - `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.
+
+#### Defined Types: `stns::server::users`
+
+- `id`: Specifies the user ID. Valid options: a number type. Default: undef.
+- `group_id`: Specifies the user's primary group. Valid options: a number type. Default: undef.
+- `directory`: Specifies the home directory of the user. Valid options: a string containing a valid path. Default: `/home/<resource title>`.
+- `shell`: Specifies the user's login shell. Valid options: a string containing a valid path. Default: `/bin/bash`.
+- `keys`: Specify user attributes in an array of key = value pairs. Valid options: a string containing a valid key = value pairs. Default: undef.
+- `link_users`: Valid options: a string containing a valid password. Default: undef.
+
+#### Defined Types: `stns::server::groups`
+
+- `id`: Specifies the group ID. Valid options: a number type. Default: undef.
+- `users`: Specifies the members of the group. Valid options: a string containing a valid password. Default: undef.
+
+##### Parameters
 
 ## Limitations
 

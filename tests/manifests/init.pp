@@ -11,3 +11,25 @@
 #
 include stns::client
 include stns::server
+
+stns::server::groups { 'sample':
+  id    => 1001,
+  users => [
+    'foo',
+    'bar',
+  ],
+}
+
+stns::server::users {
+  'foo':
+    id         => 1001,
+    group_id   => 1001,
+    directory  => '/home/foo',
+    shell      => '/bin/bash';
+
+  'bar':
+    id         => 1002,
+    group_id   => 1001,
+    directory  => '/home/bar',
+    shell      => '/bin/bash';
+}

@@ -3,7 +3,23 @@ require 'spec_helper_acceptance'
 describe 'stns::server class' do
   let(:manifest) {
     <<-EOS
-      include ::stns::server
+      class { '::stns::server':
+        port     => 1104,
+        user     => 'sample',
+        password => 's@mp1e',
+      }
+
+      ::stns::server::users { 'sandbox':
+        id         => 1001,
+        group_id   => 1001,
+        keys       => 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
+        link_users => 'foo',
+      }
+
+      ::stns::server::groups { 'sandbox':
+        id    => 1001,
+        users => 'sandbox',
+      }
     EOS
   }
 
@@ -31,9 +47,21 @@ describe 'stns::server class' do
 
   describe file('/etc/stns/stns.conf') do
     it { should be_file }
-    its(:content) { should match /^port\s+=\s+\d+$/ }
-    its(:content) { should match /^user\s+=\s+".*"$/ }
-    its(:content) { should match /^password\s+=\s+".*"$/ }
+    its(:content) { should match /^port\s+=\s+1104$/ }
+    its(:content) { should match /^user\s+=\s+"sample"$/ }
+    its(:content) { should match /^password\s+=\s+"s@mp1e"$/ }
+
+    its(:content) { should match /^\[users.sandbox\]$/ }
+    its(:content) { should match /^id = 1001$/ }
+    its(:content) { should match /^group_id = 1001$/ }
+    its(:content) { should match /^directory = "\/home\/sandbox"$/ }
+    its(:content) { should match /^shell = "\/bin\/bash"$/ }
+    its(:content) { should match /^keys = \[".+"\]$/ }
+    its(:content) { should match /^link_users = \["foo"\]$/ }
+
+    its(:content) { should match /^\[groups.sandbox\]$/ }
+    its(:content) { should match /^id = 1001$/ }
+    its(:content) { should match /^users = \["sandbox"\]$/ }
   end
 
   describe service('stns') do
