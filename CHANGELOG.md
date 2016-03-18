@@ -1,3 +1,8 @@
+Release 1.0.0 (2016/03/18)
+---
+
+- Feature: Configure users and groups of STNS server [#7](https://github.com/STNS/puppet-stns/pull/7)
+
 Release 0.3.0 (2016/03/17)
 ---
 

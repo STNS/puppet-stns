@@ -23,7 +23,6 @@
   - [Running tests](#running-tests)
   - [Testing quickstart](#testing-quickstart)
   - [Smoke tests](#smoke-tests)
-1. [TODO](#todo)
 
 ## Description
 
@@ -230,10 +229,3 @@ You can run smoke tests using [Vagrant](https://www.vagrantup.com/):
 ```console
 $ vagrant up <vm> --provision
 ```
-
-### TODO
-
-- configuring nscd
-- configuring nsswitch.conf
-- `stns::server::users`
-- `stns::server::groups`
