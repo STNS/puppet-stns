@@ -23,7 +23,6 @@
   - [Running tests](#running-tests)
   - [Testing quickstart](#testing-quickstart)
   - [Smoke tests](#smoke-tests)
-1. [TODO](#todo)
 
 ## Description
 
