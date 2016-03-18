@@ -230,10 +230,3 @@ You can run smoke tests using [Vagrant](https://www.vagrantup.com/):
 ```console
 $ vagrant up <vm> --provision
 ```
-
-### TODO
-
-- configuring nscd
-- configuring nsswitch.conf
-- `stns::server::users`
-- `stns::server::groups`
