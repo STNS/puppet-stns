@@ -6,8 +6,8 @@
 define stns::server::users (
   $id         = undef,
   $group_id   = undef,
-  $directory  = undef,
-  $shell      = undef,
+  $directory  = "/home/${title}",
+  $shell      = '/bin/bash',
   $keys       = undef,
   $link_users = undef,
 ) {
