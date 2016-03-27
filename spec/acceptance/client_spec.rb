@@ -43,11 +43,11 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
-  describe package('libnss-stns') do
+  describe package('lib-stns') do
     it { should be_installed }
   end
 
-  describe file('/etc/stns/libnss_stns.conf') do
+  describe file('/etc/stns/lib_stns.conf') do
     it { should be_file }
     its(:content) { should match %r|^api_end_point = \["http://stns1.example.jp:1104", "http://stns2.example.jp:1104"\]$| }
     its(:content) { should match /^user = "sample"$/ }
