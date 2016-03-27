@@ -1,11 +1,11 @@
 # Class: stns::client::install
 # ===========================
 #
-# stns::client::install is to install libnss-stns and files.
+# stns::client::install is to install lib-stns and files.
 
 class stns::client::install {
 
-  package { 'libnss-stns':
+  package { 'lib-stns':
     ensure => present,
   }
 

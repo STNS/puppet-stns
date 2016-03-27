@@ -1,7 +1,7 @@
 # Class: stns::client::config
 # ===========================
 #
-# stns::client::config is to configure libnss-stns.
+# stns::client::config is to configure lib-stns.
 
 class stns::client::config (
   $api_end_point     = $stns::client::api_end_point,
@@ -13,12 +13,12 @@ class stns::client::config (
 )
 {
 
-  file { '/etc/stns/libnss_stns.conf':
+  file { '/etc/stns/lib_stns.conf':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('stns/libnss_stns.conf.erb'),
+    content => template('stns/lib_stns.conf.erb'),
   }
 
 }
