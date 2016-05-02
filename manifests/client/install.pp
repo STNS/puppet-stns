@@ -5,7 +5,10 @@
 
 class stns::client::install {
 
-  package { 'libnss-stns':
+  package { [
+    'libnss-stns',
+    'libpam-stns',
+  ]:
     ensure => present,
   }
 
