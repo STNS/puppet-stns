@@ -1,3 +1,8 @@
+Release 1.1.0 (2016/05/03)
+---
+
+- Feature: Install libpam-stns package [#12](https://github.com/STNS/puppet-stns/pull/12)
+
 Release 1.0.0 (2016/03/18)
 ---
 
