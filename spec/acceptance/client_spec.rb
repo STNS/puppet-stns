@@ -43,8 +43,13 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
-  describe package('libnss-stns') do
-    it { should be_installed }
+  %w(
+    libnss-stns
+    libpam-stns
+  ).each do |pkg|
+    describe package(pkg) do
+      it { should be_installed }
+    end
   end
 
   describe file('/etc/stns/libnss_stns.conf') do
