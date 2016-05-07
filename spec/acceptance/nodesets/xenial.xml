@@ -1,0 +1,11 @@
+HOSTS:
+  ubuntu-xenial-x64:
+    platform: ubuntu-xenial-x86_64
+    image: ubuntu:xenial
+    hypervisor: docker
+    docker_image_commands:
+      - 'apt-get install -y sudo wget'
+CONFIG:
+  type: foss
+  masterless: true
+  # log_level: verbose
