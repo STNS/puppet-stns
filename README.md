@@ -188,7 +188,7 @@ This module has been tested on:
 - CentOS 5, 6, 7
 - Scientific Linux 5, 6, 7
 - Debian 7, 8
-- Ubuntu 12.04, 14.04
+- Ubuntu 12.04, 14.04, 16.04
 
 ## Development
 
