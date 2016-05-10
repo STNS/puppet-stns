@@ -45,7 +45,7 @@ To install the STNS server with default parameters, declare the `stns::server` c
 include ::stns::server
 ```
 
-To install the STNS client (libnss\_stns) with default parameters, declare the `stns::client` class.
+To install the STNS client (libnss\_stns and libpam\_stns) with default parameters, declare the `stns::client` class.
 
 ```puppet
 include ::stns::client
@@ -129,7 +129,7 @@ stns::client::handle_sshd_config: true
 ### Public Classes
 
 - [`stns::server`](#stnsserver): Installs and configures STNS.
-- [`stns::client`](#stnsclient): Installs and configures libnss\_stns.
+- [`stns::client`](#stnsclient): Installs and configures libnss\_stns and libpam\_stns.
 
 ### Private Classes
 
@@ -137,7 +137,7 @@ stns::client::handle_sshd_config: true
 - `stns::server::install`: Installs STNS package.
 - `stns::server::config`: Configures STNS.
 - `stns::server::server`: Manages service.
-- `stns::client::install`: Installs packages for libnss\_stns.
+- `stns::client::install`: Installs packages for libnss\_stns and libpam\_stns.
 - `stns::client::config`: Configures
 
 ### Defined Types
