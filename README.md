@@ -34,8 +34,8 @@ The STNS module handles installing, configuring, and running [STNS](https://gith
 
 The STNS module requires the following puppet modules:
 
-- [puppetlabs-stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib): version 4.0 or newer.
-- [puppetlabs-apt](https://forge.puppetlabs.com/puppetlabs/apt): version 2.0 or newer (only Debian-based distributions).
+- [puppetlabs-stdlib](https://forge.puppet.com/puppetlabs/stdlib): version 4.0 or newer.
+- [puppetlabs-apt](https://forge.puppet.com/puppetlabs/apt): version 2.0 or newer (only Debian-based distributions).
 
 ### Beginning with STNS
 
