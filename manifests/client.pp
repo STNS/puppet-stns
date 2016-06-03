@@ -15,6 +15,8 @@ class stns::client (
 
   $handle_nsswitch    = false,
   $handle_sshd_config = false,
+  $handle_sudo_config = false,
+  $sudoers_name       = undef,
 ) {
 
   validate_string($user)
@@ -74,6 +76,24 @@ class stns::client (
       ],
       require => Package['openssh-server'],
       notify  => Service[$ssh_service],
+    }
+  }
+
+  if $handle_sudo_config {
+    validate_string($sudoers_name)
+
+    $line = $sudoers_name ? {
+      undef   => 'auth       sufficient   libpam_stns.so',
+      default => "auth       sufficient   libpam_stns.so sudo ${sudoers_name}",
+    }
+
+    file_line { 'pam_sudo_stns':
+      ensure            => present,
+      path              => '/etc/pam.d/sudo',
+      line              => $line,
+      match             => '^auth\s+sufficient\s+libpam_stns.so\s+sudo\s+example$',
+      after             => '^#%PAM-1.0$',
+      match_for_absence => true,
     }
   }
 

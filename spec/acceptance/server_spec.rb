@@ -62,6 +62,10 @@ describe 'stns::server class' do
     its(:content) { should match /^\[groups.sandbox\]$/ }
     its(:content) { should match /^id = 1001$/ }
     its(:content) { should match /^users = \["sandbox"\]$/ }
+
+    its(:content) { should match /^\[sudoers.sandbox\]$/ }
+    its(:content) { should match /^password = "[a-z0-9]{64}"$/ }
+    its(:content) { should match /^hash_type = "sha256"$/ }
   end
 
   describe service('stns') do

@@ -30,6 +30,8 @@ describe 'stns::client class' do
         http_proxy         => 'http://proxy.example.com:1104',
         handle_nsswitch    => true,
         handle_sshd_config => true,
+        handle_sudo_config => true,
+        sudoers_name       => 'example_user',
       }
     EOS
   end
@@ -75,5 +77,9 @@ describe 'stns::client class' do
     its(:content) { should match /^\s*PubkeyAuthentication\s+yes$/ }
     its(:content) { should match %r{^\s*AuthorizedKeysCommand\s+/usr/local/bin/stns-key-wrapper$} }
     its(:content) { should match /^\s*AuthorizedKeysCommand(User|RunAs)\s+root$/ }
+  end
+
+  describe file('/etc/pam.d/sudo') do
+    its(:content) { should match /^#%PAM-1.0\nauth\s+sufficient\s+libpam_stns.so\s+sudo\s+example_user$/ }
   end
 end
