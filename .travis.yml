@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-- 2.1.0
-- 2.3.0
+- 2.1.9
 cache: bundler
 bundler_args: "--jobs=3 --retry=3 --without=development"
 before_script: bundle exec puppet --version
@@ -10,9 +9,6 @@ env:
 - PUPPET_VERSION='~> 3.8.0'
 - PUPPET_VERSION='~> 4.4.0'
 matrix:
-  exclude:
-  - rvm: 2.3.0
-    env: PUPPET_VERSION='~> 3.8.0'
   include:
   - rvm: default
     sudo: required
