@@ -8,4 +8,3 @@ HOSTS:
 CONFIG:
   type: foss
   masterless: true
-  # log_level: verbose
