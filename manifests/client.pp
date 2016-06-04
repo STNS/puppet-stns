@@ -82,18 +82,21 @@ class stns::client (
   if $handle_sudo_config {
     validate_string($sudoers_name)
 
-    $line = $sudoers_name ? {
-      undef   => 'auth       sufficient   libpam_stns.so',
-      default => "auth       sufficient   libpam_stns.so sudo ${sudoers_name}",
-    }
-
-    file_line { 'pam_sudo_stns':
-      ensure            => present,
-      path              => '/etc/pam.d/sudo',
-      line              => $line,
-      match             => '^auth\s+sufficient\s+libpam_stns.so\s+sudo\s+example$',
-      after             => '^#%PAM-1.0$',
-      match_for_absence => true,
+    augeas {'sudo pam with stns':
+      context => '/files/etc/pam.d/sudo',
+      changes => [
+        'ins "01" after #comment',
+        'set 01/type auth',
+        'set 01/control sufficient',
+        'set 01/module libpam_stns.so',
+        'set 01/argument[1] sudo',
+        "set 01/argument[2] ${sudoers_name}",
+      ],
+      onlyif  => [
+        "values *[type = 'auth']/module not_include libpam_stns.so",
+        "match *[module = 'libpam_stns.so']/argument size < 2",
+        "match *[module = 'libpam_stns.so']/argument != ['sudo', ${sudoers_name}]",
+      ],
     }
   }
 
