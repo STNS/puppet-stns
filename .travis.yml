@@ -7,7 +7,7 @@ before_script: bundle exec puppet --version
 script: bundle exec rake
 env:
 - PUPPET_VERSION='~> 3.8.0'
-- PUPPET_VERSION='~> 4.4.0'
+- PUPPET_VERSION='~> 4.5.0'
 matrix:
   include:
   - rvm: default
