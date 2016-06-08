@@ -9,6 +9,7 @@ class stns::client (
   $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
   $chain_ssh_wrapper  = undef,
   $ssl_verify         = true,
+  $package_latest     = false,
 
   $handle_nsswitch    = false,
   $handle_sshd_config = false,
