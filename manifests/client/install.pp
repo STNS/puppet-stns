@@ -16,7 +16,7 @@ class stns::client::install(
     'libnss-stns',
     'libpam-stns',
   ]:
-    ensure => present,
+    ensure => $package_ensure,
   }
 
 }
