@@ -3,10 +3,12 @@
 #
 # stns::server::install is to install stns.
 
-class stns::server::install {
+class stns::server::install (
+  $ensure = $stns::server::package_ensure,
+) {
 
   package { 'stns':
-    ensure => present,
+    ensure => $ensure,
   }
 
   file { '/etc/stns/conf.d':

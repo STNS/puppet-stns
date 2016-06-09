@@ -57,9 +57,10 @@ include ::stns::client
 
 ```puppet
 class { '::stns::server':
-  port     => 1104,
-  user     => 'sample',
-  password => 's@mp1e',
+  port           => 1104,
+  user           => 'sample',
+  password       => 's@mp1e',
+  package_ensure => latest,
 }
 
 # Configures users and groups
@@ -112,6 +113,7 @@ class { '::stns::client':
 stns::server::port: 1104
 stns::server::user: sample
 stns::server::password: s@mp1e
+stns::server::package_ensure: latest
 
 stns::client::api_end_point:
   - 'http://stns1.example.jp:1104'
@@ -154,6 +156,7 @@ stns::client::handle_sshd_config: true
 - `port`: Specifies a listen port listen. Valid options: a number of a port number. Default: 1104.
 - `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
 - `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
+- `package_ensure`: What state the packages should be in.
 
 #### Class: `stns::client`
 
