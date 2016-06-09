@@ -1,3 +1,8 @@
+Release 1.3.0 (2016/06/09)
+---
+
+- Feature: Add `$package_latest` option to catch up latest packages in stns::server [#19](https://github.com/STNS/puppet-stns/pull/19)
+
 Release 1.2.0 (2016/06/09)
 ---
 
