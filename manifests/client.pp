@@ -9,7 +9,7 @@ class stns::client (
   $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
   $chain_ssh_wrapper  = undef,
   $ssl_verify         = true,
-  $package_latest     = false,
+  $package_ensure     = present,
 
   $handle_nsswitch    = false,
   $handle_sshd_config = false,
@@ -22,6 +22,7 @@ class stns::client (
     validate_absolute_path($chain_ssh_wrapper)
   }
   validate_bool($ssl_verify)
+  validate_string($package_ensure)
   validate_bool($handle_nsswitch)
   validate_bool($handle_sshd_config)
 
