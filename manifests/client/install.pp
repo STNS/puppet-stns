@@ -3,13 +3,15 @@
 #
 # stns::client::install is to install libnss-stns and files.
 
-class stns::client::install {
+class stns::client::install(
+  $package_ensure = $stns::client::package_ensure,
+) {
 
   package { [
     'libnss-stns',
     'libpam-stns',
   ]:
-    ensure => present,
+    ensure => $package_ensure,
   }
 
 }
