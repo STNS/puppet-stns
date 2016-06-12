@@ -19,7 +19,9 @@ class stns::server (
   validate_string($package_ensure)
   validate_string($sudoers_name)
   validate_string($sudoers_password)
-  validate_re($sudoers_hash_type, '\Asha(256|512)\z', 'sudoers_hash_type supports sha256 or sha512.')
+  if $sudoers_hash_type != undef {
+    validate_re($sudoers_hash_type, '\Asha(256|512)\z', 'sudoers_hash_type supports sha256 or sha512.')
+  }
 
   require stns::repo
 
