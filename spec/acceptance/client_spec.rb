@@ -31,7 +31,6 @@ describe 'stns::client class' do
         handle_nsswitch    => true,
         handle_sshd_config => true,
         handle_sudo_config => true,
-        sudoers_name       => 'example_user',
       }
     EOS
   end
@@ -80,6 +79,6 @@ describe 'stns::client class' do
   end
 
   describe file('/etc/pam.d/sudo') do
-    its(:content) { should match /^#%PAM-1.0\nauth\s+sufficient\s+libpam_stns.so\s+sudo\s+example_user$/ }
+    its(:content) { should match /^#%PAM-1.0\nauth\s+sufficient\s+libpam_stns.so$/ }
   end
 end
