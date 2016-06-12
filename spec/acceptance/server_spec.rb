@@ -4,9 +4,11 @@ describe 'stns::server class' do
   let(:manifest) do
     <<-EOS
       class { '::stns::server':
-        port     => 1104,
-        user     => 'sample',
-        password => 's@mp1e',
+        port             => 1104,
+        user             => 'sample',
+        password         => 's@mp1e',
+        sudoers_name     => 'sandbox',
+        sudoers_password => 'b7ad567477c83756aab9a542b2be04f77dbae25115d85f22070d74d8cc4779dc',
       }
 
       ::stns::server::users { 'sandbox':
