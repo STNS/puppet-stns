@@ -26,7 +26,7 @@
 
 ## Description
 
-The STNS module handles installing, configuring, and running [STNS](https://github.com/STNS/STNS) and [libnss_stns](https://github.com/STNS/libnss_stns).
+The STNS module handles installing, configuring, and running [STNS](https://github.com/STNS/STNS) and [libnss_stns](https://github.com/STNS/libnss_stns) on [stns.jp](http://stns.jp).
 
 ## Setup
 
