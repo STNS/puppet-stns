@@ -100,6 +100,8 @@ class { '::stns::client':
   wrapper_path       => '/usr/local/bin/stns-query-wrapper',
   chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
   ssl_verify         => true,
+  request_timeout    => 3,
+  http_proxy         => 'http://proxy.example.com:1104',
   package_ensure     => latest,
   handle_nsswitch    => true,
   handle_sshd_config => true,
@@ -123,6 +125,8 @@ stns::client::password: s@mp1e
 stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
 stns::client::chain_ssh_wrapper: null
 stns::client::ssl_verify: true
+stns::client::request_timeout: 3
+stns::client::http_proxy: 'http://proxy.example.com:1104'
 stns::client::package_ensure: latest
 stns::client::handle_nsswitch: true
 stns::client::handle_sshd_config: true
@@ -166,6 +170,8 @@ stns::client::handle_sshd_config: true
 - `wrapper_path`: Valid options: absolute path. Default: '/usr/local/bin/stns-query-wrapper'.
 - `chain_ssh_wrapper`: Default: 'undef'.
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
+- `request_timeout`: Wrapper Command Timeout. Valid options: a number. Default: 3.
+- `http_proxy`: Valid options: a string. Default: 'undef'.
 - `package_ensure`: What state the packages should be in.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 - `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.

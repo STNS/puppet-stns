@@ -10,6 +10,8 @@ class stns::client::config (
   $wrapper_path      = $stns::client::wrapper_path,
   $chain_ssh_wrapper = $stns::client::chain_ssh_wrapper,
   $ssl_verify        = $stns::client::ssl_verify,
+  $request_timeout   = $stns::client::request_timeout,
+  $http_proxy        = $stns::client::http_proxy,
 )
 {
 

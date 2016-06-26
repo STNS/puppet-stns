@@ -26,6 +26,8 @@ describe 'stns::client class' do
         wrapper_path       => '/usr/local/bin/stns-query-wrapper',
         chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
         ssl_verify         => true,
+        request_timeout    => 3,
+        http_proxy         => 'http://proxy.example.com:1104',
         handle_nsswitch    => true,
         handle_sshd_config => true,
       }
@@ -60,6 +62,8 @@ describe 'stns::client class' do
     its(:content) { should match %r|^wrapper_path = "/usr/local/bin/stns-query-wrapper"$| }
     its(:content) { should match %r|^chain_ssh_wrapper = "/usr/libexec/openssh/ssh-ldap-wrapper"$| }
     its(:content) { should match /^ssl_verify = true$/ }
+    its(:content) { should match /^request_timeout = 3$/ }
+    its(:content) { should match %r|^http_proxy = "http://proxy.example.com:1104"$| }
   end
 
   describe file('/etc/nsswitch.conf') do
