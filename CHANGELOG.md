@@ -1,3 +1,8 @@
+Release 1.4.0 (2016/06/27)
+---
+
+- Feature: Add params `$request_timeout` and `$http_proxy` to stns::client class [#21](https://github.com/STNS/puppet-stns/pull/21)
+
 Release 1.3.0 (2016/06/09)
 ---
 
