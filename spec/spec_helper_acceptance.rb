@@ -9,14 +9,14 @@ RSpec.configure do |c|
 
   c.before :suite do
     # Install module to all hosts
-    install_dev_puppet_module(:source => module_root)
+    install_dev_puppet_module(source: module_root)
 
     # Install dependencies
     hosts.each do |host|
       apply_manifest_on(host, 'package { "tar": }')
       on(host, puppet('module', 'install', 'puppetlabs-stdlib'))
       on(host, puppet('module', 'install', 'puppetlabs-concat'))
-      if host.platform.match /(debian|ubuntu)/
+      if host.platform =~ /(debian|ubuntu)/
         on(host, puppet('module', 'install', 'puppetlabs-apt'))
       end
     end

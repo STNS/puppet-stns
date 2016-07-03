@@ -9,7 +9,7 @@ describe 'stns::server::users' do
       directory:  '/home/sample',
       shell:      '/bin/bash',
       keys:       'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
-      link_users: 'sample',
+      link_users: 'sample'
     }
   end
 
@@ -25,7 +25,7 @@ describe 'stns::server::groups' do
   let(:params) do
     {
       id:    1001,
-      users: 'sample',
+      users: 'sample'
     }
   end
 
