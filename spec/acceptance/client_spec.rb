@@ -28,6 +28,8 @@ describe 'stns::client class' do
         ssl_verify         => true,
         request_timeout    => 3,
         http_proxy         => 'http://proxy.example.com:1104',
+        libnss_stns_ensure => latest,
+        libpam_stns_ensure => latest,
         handle_nsswitch    => true,
         handle_sshd_config => true,
       }

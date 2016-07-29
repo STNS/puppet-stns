@@ -102,7 +102,8 @@ class { '::stns::client':
   ssl_verify         => true,
   request_timeout    => 3,
   http_proxy         => 'http://proxy.example.com:1104',
-  package_ensure     => latest,
+  libnss_stns_ensure => latest,
+  libpam_stns_ensure => latest,
   handle_nsswitch    => true,
   handle_sshd_config => true,
 }
@@ -127,7 +128,8 @@ stns::client::chain_ssh_wrapper: null
 stns::client::ssl_verify: true
 stns::client::request_timeout: 3
 stns::client::http_proxy: 'http://proxy.example.com:1104'
-stns::client::package_ensure: latest
+stns::client::libnss_stns_ensure: latest
+stns::client::libpam_stns_ensure: latest
 stns::client::handle_nsswitch: true
 stns::client::handle_sshd_config: true
 ```
@@ -172,7 +174,9 @@ stns::client::handle_sshd_config: true
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
 - `request_timeout`: Wrapper Command Timeout. Valid options: a number. Default: 3.
 - `http_proxy`: Valid options: a string. Default: 'undef'.
-- `package_ensure`: What state the packages should be in.
+- `package_ensure`: What state the packages should be in. This parameter is deprecated and will be removed. Please use `$libnss_stns_ensure` and `$libpam_stns_ensure` instead.
+- `libnss_stns_ensure`: What state the libnss-stns package should be in.
+- `libpam_stns_ensure`: What state the libpam-stns package should be in.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 - `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.
 

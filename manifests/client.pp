@@ -11,7 +11,9 @@ class stns::client (
   $ssl_verify         = true,
   $request_timeout    = 3,
   $http_proxy         = undef,
-  $package_ensure     = present,
+  $package_ensure     = undef,
+  $libnss_stns_ensure = present,
+  $libpam_stns_ensure = present,
 
   $handle_nsswitch    = false,
   $handle_sshd_config = false,
@@ -27,6 +29,8 @@ class stns::client (
   validate_integer($request_timeout)
   validate_string($http_proxy)
   validate_string($package_ensure)
+  validate_string($libnss_stns_ensure)
+  validate_string($libpam_stns_ensure)
   validate_bool($handle_nsswitch)
   validate_bool($handle_sshd_config)
 
