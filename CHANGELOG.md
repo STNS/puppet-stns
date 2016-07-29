@@ -1,3 +1,9 @@
+Release 1.5.0 (2016/07/29)
+---
+
+- Change: $package_ensure is deprecated and use $libnss_stns_ensure and $libpam_stns_ensure instead. [#22](https://github.com/STNS/puppet-stns/pull/22)
+
+
 Release 1.4.0 (2016/06/27)
 ---
 
