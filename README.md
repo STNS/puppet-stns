@@ -1,7 +1,7 @@
 # puppet-stns
 
 [![Build Status](https://img.shields.io/travis/STNS/puppet-stns/master.svg?style=flat-square)](https://travis-ci.org/STNS/puppet-stns)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/hfm/stns.svg?style=flat-square)](https://forge.puppetlabs.com/hfm/stns)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/hfm/stns.svg?style=flat-square)](https://forge.puppet.com/hfm/stns)
 
 #### Table of Contents
 
