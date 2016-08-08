@@ -23,7 +23,7 @@ describe 'stns::client class' do
         ],
         user               => 'sample',
         password           => 's@mp1e',
-        wrapper_path       => '/usr/local/bin/stns-query-wrapper',
+        wrapper_path       => '/usr/lib/stns/stns-query-wrapper',
         chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
         ssl_verify         => true,
         request_timeout    => 3,
@@ -60,7 +60,7 @@ describe 'stns::client class' do
     its(:content) { should match %r{^api_end_point = \["http://stns1.example.jp:1104", "http://stns2.example.jp:1104"\]$} }
     its(:content) { should match /^user = "sample"$/ }
     its(:content) { should match /^password = "s@mp1e"$/ }
-    its(:content) { should match %r{^wrapper_path = "/usr/local/bin/stns-query-wrapper"$} }
+    its(:content) { should match %r{^wrapper_path = "/usr/lib/stns/stns-query-wrapper"$} }
     its(:content) { should match %r{^chain_ssh_wrapper = "/usr/libexec/openssh/ssh-ldap-wrapper"$} }
     its(:content) { should match /^ssl_verify = true$/ }
     its(:content) { should match /^request_timeout = 3$/ }
@@ -75,7 +75,7 @@ describe 'stns::client class' do
 
   describe file('/etc/ssh/sshd_config') do
     its(:content) { should match /^\s*PubkeyAuthentication\s+yes$/ }
-    its(:content) { should match %r{^\s*AuthorizedKeysCommand\s+/usr/local/bin/stns-key-wrapper$} }
+    its(:content) { should match %r{^\s*AuthorizedKeysCommand\s+/usr/lib/stns/stns-key-wrapper$} }
     its(:content) { should match /^\s*AuthorizedKeysCommand(User|RunAs)\s+root$/ }
   end
 end
