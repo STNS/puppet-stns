@@ -1,4 +1,5 @@
 require 'spec_helper_acceptance'
+require 'toml'
 
 describe 'stns::client class' do
   let(:manifest) do
@@ -28,6 +29,10 @@ describe 'stns::client class' do
         ssl_verify         => true,
         request_timeout    => 3,
         http_proxy         => 'http://proxy.example.com:1104',
+        request_header     => {
+          'x-api-key1' => 'foo',
+          'x-api-key2' => 'bar',
+        },
         libnss_stns_ensure => latest,
         libpam_stns_ensure => latest,
         handle_nsswitch    => true,
@@ -57,14 +62,22 @@ describe 'stns::client class' do
 
   describe file('/etc/stns/libnss_stns.conf') do
     it { should be_file }
-    its(:content) { should match %r{^api_end_point = \["http://stns1.example.jp:1104", "http://stns2.example.jp:1104"\]$} }
-    its(:content) { should match /^user = "sample"$/ }
-    its(:content) { should match /^password = "s@mp1e"$/ }
-    its(:content) { should match %r{^wrapper_path = "/usr/lib/stns/stns-query-wrapper"$} }
-    its(:content) { should match %r{^chain_ssh_wrapper = "/usr/libexec/openssh/ssh-ldap-wrapper"$} }
-    its(:content) { should match /^ssl_verify = true$/ }
-    its(:content) { should match /^request_timeout = 3$/ }
-    its(:content) { should match %r{^http_proxy = "http://proxy.example.com:1104"$} }
+
+    it "configures" do
+      conf = TOML.parse(subject.content)
+
+      expect(conf['api_end_point']).to include 'http://stns1.example.jp:1104'
+      expect(conf['api_end_point']).to include 'http://stns2.example.jp:1104'
+      expect(conf['user']).to eq 'sample'
+      expect(conf['password']).to eq 's@mp1e'
+      expect(conf['wrapper_path']).to eq '/usr/lib/stns/stns-query-wrapper'
+      expect(conf['chain_ssh_wrapper']).to eq '/usr/libexec/openssh/ssh-ldap-wrapper'
+      expect(conf['ssl_verify']).to eq true
+      expect(conf['request_timeout']).to eq 3
+      expect(conf['http_proxy']).to eq 'http://proxy.example.com:1104'
+      expect(conf['request_header']['x-api-key1']).to eq 'foo'
+      expect(conf['request_header']['x-api-key2']).to eq 'bar'
+    end
   end
 
   describe file('/etc/nsswitch.conf') do

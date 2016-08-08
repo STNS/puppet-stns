@@ -20,3 +20,10 @@ ssl_verify = <%= @ssl_verify %>
 request_timeout = <%= @request_timeout %>
 
 http_proxy = "<%= @http_proxy %>"
+<% if @request_header -%>
+
+[request_header]
+<% @request_header.each do |k, v| %>
+<%= "#{k} = \"#{v}\"" %>
+<% end -%>
+<% end -%>
