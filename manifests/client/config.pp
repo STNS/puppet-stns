@@ -12,8 +12,12 @@ class stns::client::config (
   $ssl_verify        = $stns::client::ssl_verify,
   $request_timeout   = $stns::client::request_timeout,
   $http_proxy        = $stns::client::http_proxy,
-)
-{
+  $request_header    = $stns::client::request_header,
+){
+
+  if $request_header != undef {
+    validate_hash($request_header)
+  }
 
   file { '/etc/stns/libnss_stns.conf':
     ensure  => present,
