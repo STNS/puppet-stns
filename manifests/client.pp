@@ -19,6 +19,8 @@ class stns::client (
 
   $handle_nsswitch    = false,
   $handle_sshd_config = false,
+  $handle_sudo_config = false,
+  $sudoers_name       = undef,
 ) {
 
   validate_string($user)
@@ -80,6 +82,43 @@ class stns::client (
       ],
       require => Package['openssh-server'],
       notify  => Service[$ssh_service],
+    }
+  }
+
+  if $handle_sudo_config {
+    if $sudoers_name {
+      validate_string($sudoers_name)
+
+      augeas {'sudo pam with stns':
+        context => '/files/etc/pam.d/sudo',
+        changes => [
+          'ins "01" after #comment',
+          'set 01/type auth',
+          'set 01/control sufficient',
+          'set 01/module libpam_stns.so',
+          'set 01/argument[1] sudo',
+          "set 01/argument[2] ${sudoers_name}",
+        ],
+        onlyif  => [
+          "values *[type = 'auth']/module not_include libpam_stns.so",
+          "match *[module = 'libpam_stns.so']/argument size < 2",
+          "match *[module = 'libpam_stns.so']/argument != ['sudo', ${sudoers_name}]",
+        ],
+      }
+    } else {
+      augeas {'sudo pam with stns':
+        context => '/files/etc/pam.d/sudo',
+        changes => [
+          'ins "01" after #comment',
+          'set 01/type auth',
+          'set 01/control sufficient',
+          'set 01/module libpam_stns.so',
+        ],
+        onlyif  => [
+          "values *[type = 'auth']/module not_include libpam_stns.so",
+          "match *[module = 'libpam_stns.so']/argument size == 0",
+        ],
+      }
     }
   }
 

@@ -5,11 +5,14 @@
 
 class stns::server::config {
 
-  $port     = $stns::server::port
-  $user     = $stns::server::user
-  $password = $stns::server::password
-  $users    = $stns::server::users
-  $groups   = $stns::server::groups
+  $port              = $stns::server::port
+  $user              = $stns::server::user
+  $password          = $stns::server::password
+  $users             = $stns::server::users
+  $groups            = $stns::server::groups
+  $sudoers_name      = $stns::server::sudoers_name
+  $sudoers_password  = $stns::server::sudoers_password
+  $sudoers_hash_type = $stns::server::sudoers_hash_type
 
   concat { '/etc/stns/stns.conf':
     ensure => present,
@@ -39,6 +42,14 @@ class stns::server::config {
       target  => '/etc/stns/stns.conf',
       content => "## Groups configurations.\n",
       order   => '60';
+  }
+
+  if $sudoers_name != undef {
+    concat::fragment { 'sudoers_config_in_stns':
+      target  => '/etc/stns/stns.conf',
+      content => template('stns/sudoers.conf.erb'),
+      order   => '25',
+    }
   }
 
 }
