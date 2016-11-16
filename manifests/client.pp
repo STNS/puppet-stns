@@ -12,6 +12,8 @@ class stns::client (
   $request_timeout    = 3,
   $http_proxy         = undef,
   $request_header     = undef,
+  $uid_shift          = 0,
+  $gid_shift          = 0,
 
   $package_ensure     = undef,
   $libnss_stns_ensure = present,

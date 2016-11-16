@@ -20,6 +20,10 @@ ssl_verify = <%= @ssl_verify %>
 request_timeout = <%= @request_timeout %>
 
 http_proxy = "<%= @http_proxy %>"
+
+# The shift of uid and gid is available after version3 API
+uid_shift = <%= @uid_shift %>
+gid_shift = <%= @gid_shift %>
 <% if @request_header -%>
 
 [request_header]

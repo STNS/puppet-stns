@@ -13,6 +13,8 @@ class stns::client::config (
   $request_timeout   = $stns::client::request_timeout,
   $http_proxy        = $stns::client::http_proxy,
   $request_header    = $stns::client::request_header,
+  $uid_shift         = $stns::client::uid_shift,
+  $gid_shift         = $stns::client::gid_shift,
 ){
 
   if $request_header != undef {
