@@ -12,6 +12,8 @@ class stns::client (
   $request_timeout    = 3,
   $http_proxy         = undef,
   $request_header     = undef,
+  $uid_shift          = 0,
+  $gid_shift          = 0,
 
   $package_ensure     = undef,
   $libnss_stns_ensure = present,
@@ -30,6 +32,8 @@ class stns::client (
   validate_bool($ssl_verify)
   validate_integer($request_timeout)
   validate_string($http_proxy)
+  validate_integer($uid_shift)
+  validate_integer($gid_shift)
   validate_string($package_ensure)
   validate_string($libnss_stns_ensure)
   validate_string($libpam_stns_ensure)

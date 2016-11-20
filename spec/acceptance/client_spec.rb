@@ -29,6 +29,8 @@ describe 'stns::client class' do
         ssl_verify         => true,
         request_timeout    => 3,
         http_proxy         => 'http://proxy.example.com:1104',
+        uid_shift          => 0,
+        gid_shift          => 0,
         request_header     => {
           'x-api-key1' => 'foo',
           'x-api-key2' => 'bar',
@@ -75,6 +77,8 @@ describe 'stns::client class' do
       expect(conf['ssl_verify']).to eq true
       expect(conf['request_timeout']).to eq 3
       expect(conf['http_proxy']).to eq 'http://proxy.example.com:1104'
+      expect(conf['uid_shift']).to eq 0
+      expect(conf['gid_shift']).to eq 0
       expect(conf['request_header']['x-api-key1']).to eq 'foo'
       expect(conf['request_header']['x-api-key2']).to eq 'bar'
     end
