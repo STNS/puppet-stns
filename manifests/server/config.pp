@@ -8,8 +8,6 @@ class stns::server::config {
   $port     = $stns::server::port
   $user     = $stns::server::user
   $password = $stns::server::password
-  $users    = $stns::server::users
-  $groups   = $stns::server::groups
 
   concat { '/etc/stns/stns.conf':
     ensure => present,
