@@ -23,11 +23,6 @@ matrix:
   - rvm: default
     sudo: required
     services: docker
-    env: BEAKER_set=trusty BEAKER_debug=true
-    script: bundle exec rake beaker
-  - rvm: default
-    sudo: required
-    services: docker
     env: BEAKER_set=xenial BEAKER_debug=true
     script: bundle exec rake beaker
 notifications:
