@@ -13,11 +13,6 @@ matrix:
   - rvm: default
     sudo: required
     services: docker
-    env: BEAKER_set=centos6 BEAKER_debug=true
-    script: bundle exec rake beaker
-  - rvm: default
-    sudo: required
-    services: docker
     env: BEAKER_set=centos7 BEAKER_debug=true
     script: bundle exec rake beaker
   - rvm: default
