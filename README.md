@@ -202,11 +202,11 @@ stns::client::handle_sshd_config: true
 
 This module has been tested on:
 
-- RedHat Enterprise Linux 5, 6, 7
-- CentOS 5, 6, 7
-- Scientific Linux 5, 6, 7
-- Debian 7, 8
-- Ubuntu 12.04, 14.04, 16.04
+- RedHat Enterprise Linux 7
+- CentOS 7
+- Scientific Linux 7
+- Debian 8
+- Ubuntu 16.04
 
 ## Development
 
@@ -231,10 +231,9 @@ $ eval "$(docker-machine env default)"
 
 # List available beaker nodesets
 $ bundle exec rake beaker_nodes
-centos6
 centos7
 jessie
-trusty
+xenial
 
 # Run beaker acceptance tests
 $ BEAKER_set=centos7 bundle exec rake beaker
