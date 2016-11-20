@@ -1,4 +1,9 @@
-Release 1.6.0 (2016/08/08
+Release 1.7.0 (2016/11/20)
+---
+
+- Feature: Add parameter uid_shift and gid_shift [#26](https://github.com/STNS/puppet-stns/pull/26)
+
+Release 1.6.0 (2016/08/08)
 ---
 
 - Change: Change file path to stns-\*-wrapper [#24](https://github.com/STNS/puppet-stns/pull/24)
