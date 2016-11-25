@@ -6,7 +6,7 @@ class stns::client (
   $api_end_point      = 'http://localhost:1104',
   $user               = undef,
   $password           = undef,
-  $wrapper_path       = '/usr/lib/stns/stns-query-wrapper',
+  $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
   $chain_ssh_wrapper  = undef,
   $ssl_verify         = true,
   $request_timeout    = 3,

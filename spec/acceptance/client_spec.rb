@@ -24,7 +24,7 @@ describe 'stns::client class' do
         ],
         user               => 'sample',
         password           => 's@mp1e',
-        wrapper_path       => '/usr/lib/stns/stns-query-wrapper',
+        wrapper_path       => '/usr/local/bin/stns-query-wrapper',
         chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
         ssl_verify         => true,
         request_timeout    => 3,
@@ -72,7 +72,7 @@ describe 'stns::client class' do
       expect(conf['api_end_point']).to include 'http://stns2.example.jp:1104'
       expect(conf['user']).to eq 'sample'
       expect(conf['password']).to eq 's@mp1e'
-      expect(conf['wrapper_path']).to eq '/usr/lib/stns/stns-query-wrapper'
+      expect(conf['wrapper_path']).to eq '/usr/local/bin/stns-query-wrapper'
       expect(conf['chain_ssh_wrapper']).to eq '/usr/libexec/openssh/ssh-ldap-wrapper'
       expect(conf['ssl_verify']).to eq true
       expect(conf['request_timeout']).to eq 3
