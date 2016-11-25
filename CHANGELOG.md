@@ -1,3 +1,8 @@
+Release 1.7.1 (2016/11/25)
+---
+
+- Fix: Fix path to stns-query-wrapper [#27](https://github.com/STNS/puppet-stns/pull/27)
+
 Release 1.7.0 (2016/11/20)
 ---
 
