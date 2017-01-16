@@ -1,3 +1,8 @@
+Release 1.7.2 (2017/01/17)
+---
+
+- Fix: Fix ordering about APT repository (resolves [#16](https://github.com/STNS/puppet-stns/issues/16)) [#28](https://github.com/STNS/puppet-stns/pull/28)
+
 Release 1.7.1 (2016/11/25)
 ---
 
