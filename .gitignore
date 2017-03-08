@@ -20,4 +20,5 @@ Puppetfile.lock
 tests/modules/
 
 # Beaker
-log/
+/log/
+/junit/
