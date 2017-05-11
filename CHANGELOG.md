@@ -1,3 +1,8 @@
+Release 2.0.0 (2017/05/12)
+---
+
+- Change: Update for Puppet 4 data types [#30](https://github.com/STNS/puppet-stns/pull/30)
+
 Release 1.8.0 (2017/05/12)
 ---
 
