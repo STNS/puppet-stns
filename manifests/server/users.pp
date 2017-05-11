@@ -4,26 +4,16 @@
 # The stns::server::users defined type is to configure STNS users.
 
 define stns::server::users (
-  $id         = undef,
-  $group_id   = undef,
-  $directory  = "/home/${title}",
-  $shell      = '/bin/bash',
-  $keys       = undef,
-  $link_users = undef,
+  Integer $id,
+  Integer $group_id,
+  Variant[String, Array] $keys,
+  Variant[String, Array] $link_users,
+  String $directory = "/home/${title}",
+  String $shell = '/bin/bash',
 ) {
 
-  validate_integer($id)
-  validate_integer($group_id)
   validate_absolute_path($directory)
   validate_absolute_path($shell)
-
-  if !(is_string($keys) or is_array($keys)) {
-    fail('$keys must be either a string or an array.')
-  }
-
-  if !(is_string($link_users) or is_array($link_users)) {
-    fail('$link_users must be either a string or an array.')
-  }
 
   concat::fragment { "users_${title}":
     target  => '/etc/stns/stns.conf',

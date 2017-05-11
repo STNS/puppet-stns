@@ -3,42 +3,27 @@
 #
 # stns::client is to install and configure libnss-stns.
 class stns::client (
-  $api_end_point      = 'http://localhost:1104',
-  $user               = undef,
-  $password           = undef,
-  $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
-  $chain_ssh_wrapper  = undef,
-  $ssl_verify         = true,
-  $request_timeout    = 3,
-  $http_proxy         = undef,
-  $request_header     = undef,
-  $uid_shift          = 0,
-  $gid_shift          = 0,
-
-  $package_ensure     = undef,
-  $libnss_stns_ensure = present,
-  $libpam_stns_ensure = present,
-
-  $handle_nsswitch    = false,
-  $handle_sshd_config = false,
+  Variant[String, Array] $api_end_point      = 'http://localhost:1104',
+  Optional[String]       $user               = undef,
+  Optional[String]       $password           = undef,
+  String                 $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
+  Optional[String]       $chain_ssh_wrapper  = undef,
+  Boolean                $ssl_verify         = true,
+  Integer                $request_timeout    = 3,
+  Optional[String]       $http_proxy         = undef,
+  Optional[Hash]         $request_header     = undef,
+  Integer                $uid_shift          = 0,
+  Integer                $gid_shift          = 0,
+  String                 $libnss_stns_ensure = 'present',
+  String                 $libpam_stns_ensure = 'present',
+  Boolean                $handle_nsswitch    = false,
+  Boolean                $handle_sshd_config = false,
 ) {
 
-  validate_string($user)
-  validate_string($password)
   validate_absolute_path($wrapper_path)
   if $chain_ssh_wrapper {
     validate_absolute_path($chain_ssh_wrapper)
   }
-  validate_bool($ssl_verify)
-  validate_integer($request_timeout)
-  validate_string($http_proxy)
-  validate_integer($uid_shift)
-  validate_integer($gid_shift)
-  validate_string($package_ensure)
-  validate_string($libnss_stns_ensure)
-  validate_string($libpam_stns_ensure)
-  validate_bool($handle_nsswitch)
-  validate_bool($handle_sshd_config)
 
   require stns::repo
 

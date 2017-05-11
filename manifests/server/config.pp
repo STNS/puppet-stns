@@ -3,11 +3,11 @@
 #
 # stns::server::config is to configure stns.
 
-class stns::server::config {
-
-  $port     = $stns::server::port
-  $user     = $stns::server::user
-  $password = $stns::server::password
+class stns::server::config (
+  $port     = $stns::server::port,
+  $user     = $stns::server::user,
+  $password = $stns::server::password,
+){
 
   concat { '/etc/stns/stns.conf':
     ensure => present,

@@ -4,11 +4,12 @@ puppetversion = ENV.key?('PUPPET_VERSION') ? "#{ENV['PUPPET_VERSION']}" : ['>= 4
 gem 'puppet', puppetversion
 
 group :test, :development do
-  gem 'puppetlabs_spec_helper', '>= 1.0', require: false
-  gem 'puppet-lint', '>= 2.0.0',          require: false
-  gem 'facter', '>= 2.0.1',               require: false
-  gem 'metadata-json-lint',               require: false
-  gem 'librarian-puppet',                 require: false
+  gem 'puppetlabs_spec_helper', require: false
+  gem 'puppet-lint',            require: false
+  gem 'facter',                 require: false
+  gem 'metadata-json-lint',     require: false
+  gem 'librarian-puppet',       require: false
+  gem 'xmlrpc' if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.4.0')
 end
 
 group :development do
