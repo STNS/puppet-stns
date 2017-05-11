@@ -22,7 +22,6 @@
 1. [Development - Guide for contributing to the module](#development)
    - [Running tests](#running-tests)
    - [Testing quickstart](#testing-quickstart)
-   - [Smoke tests](#smoke-tests)
 
 ## Description
 
@@ -237,12 +236,4 @@ xenial
 
 # Run beaker acceptance tests
 $ BEAKER_set=centos7 bundle exec rake beaker
-```
-
-#### Smoke tests
-
-You can run smoke tests using [Vagrant](https://www.vagrantup.com/):
-
-```console
-$ vagrant up <vm> --provision
 ```
