@@ -1,3 +1,8 @@
+Release 1.8.0 (2017/05/12)
+---
+
+- Change: Remove upper limit of puppetlabs-concat and puppetlabs-apt versions [#29](https://github.com/STNS/puppet-stns/pull/29)
+
 Release 1.7.2 (2017/01/17)
 ---
 
