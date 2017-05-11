@@ -13,7 +13,7 @@ group :test, :development do
 end
 
 group :development do
-  gem 'puppet-blacksmith', require: false
+  gem 'puppet-blacksmith', '>= 3'
 end
 
 group :system_tests do
