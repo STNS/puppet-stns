@@ -17,10 +17,6 @@ class stns::client::config (
   $gid_shift         = $stns::client::gid_shift,
 ){
 
-  if $request_header != undef {
-    validate_hash($request_header)
-  }
-
   file { '/etc/stns/libnss_stns.conf':
     ensure  => present,
     owner   => 'root',
