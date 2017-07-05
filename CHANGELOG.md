@@ -1,3 +1,8 @@
+Release 2.0.1 (2017/07/05)
+---
+
+- Fix: remove deprecated function [#29](https://github.com/STNS/puppet-stns/pull/31)
+
 Release 2.0.0 (2017/05/12)
 ---
 
