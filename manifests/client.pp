@@ -20,11 +20,6 @@ class stns::client (
   Boolean                $handle_sshd_config = false,
 ) {
 
-  validate_absolute_path($wrapper_path)
-  if $chain_ssh_wrapper {
-    validate_absolute_path($chain_ssh_wrapper)
-  }
-
   require stns::repo
 
   include stns::client::install

@@ -1,5 +1,5 @@
 require 'spec_helper_acceptance'
-require 'toml'
+require 'toml-rb'
 
 describe 'stns::client class' do
   let(:manifest) do
@@ -66,7 +66,7 @@ describe 'stns::client class' do
     it { should be_file }
 
     it "configures" do
-      conf = TOML.parse(subject.content)
+      conf = TomlRB.parse(subject.content)
 
       expect(conf['api_end_point']).to include 'http://stns1.example.jp:1104'
       expect(conf['api_end_point']).to include 'http://stns2.example.jp:1104'
