@@ -12,9 +12,6 @@ define stns::server::users (
   String $shell = '/bin/bash',
 ) {
 
-  validate_absolute_path($directory)
-  validate_absolute_path($shell)
-
   concat::fragment { "users_${title}":
     target  => '/etc/stns/stns.conf',
     content => template('stns/users.conf.erb'),
