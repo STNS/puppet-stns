@@ -1,3 +1,7 @@
+## [v2.1.0](https://github.com/STNS/puppet-stns/compare/v2.0.1...v2.1.0) (2017-12-07)
+
+* Update tests and metadata.json [#32](https://github.com/STNS/puppet-stns/pull/32) ([hfm](https://github.com/hfm))
+
 Release 2.0.1 (2017/07/05)
 ---
 
