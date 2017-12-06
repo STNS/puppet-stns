@@ -10,17 +10,13 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">=4.7.0 < 5.0.0"
+      "version_requirement": ">=4.7.0 < 6.0.0"
     }
   ],
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
       "version_requirement": ">= 4.0.0 < 5.0.0"
-    },
-    {
-      "name": "puppetlabs-apt",
-      "version_requirement": ">= 2.0.0 < 5.0.0"
     },
     {
       "name": "puppetlabs-concat",
@@ -32,31 +28,37 @@
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "7.0"
+        "6",
+        "7"
       ]
     },
     {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
-        "7.0"
+        "6",
+        "7"
       ]
     },
     {
       "operatingsystem": "Scientific Linux",
       "operatingsystemrelease": [
-        "7.0"
+        "6",
+        "7"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
+        "14.04",
         "16.04"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8"
+        "7",
+        "8",
+        "9"
       ]
     }
   ]
