@@ -17,7 +17,7 @@ matrix:
   - rvm: default
     sudo: required
     services: docker
-    env: BEAKER_set=jessie BEAKER_debug=true
+    env: BEAKER_set=stretch BEAKER_debug=true
     script: bundle exec rake beaker
   - rvm: default
     sudo: required
