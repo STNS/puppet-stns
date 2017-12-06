@@ -36,6 +36,8 @@ The STNS module requires the following puppet modules:
 - [puppetlabs-stdlib](https://forge.puppet.com/puppetlabs/stdlib): version 4.0 or newer.
 - [puppetlabs-apt](https://forge.puppet.com/puppetlabs/apt): version 2.0 or newer (only Debian-based distributions).
 
+Both puppetlabs-apt is soft dependencies. If you are installing on Debian or RedHat-based systems, you will need to configure appropriate versions of those modules.
+
 ### Beginning with STNS
 
 To install the STNS server with default parameters, declare the `stns::server` class.
