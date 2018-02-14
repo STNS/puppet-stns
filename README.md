@@ -177,7 +177,6 @@ stns::client::handle_sshd_config: true
 - `http_proxy`: Valid options: a string. Default: 'undef'.
 - `uid_shift`: Shift uid. Valid options: a number. Default: 0.
 - `gid_shift`: Shift gid. Valid options: a number. Default: 0.
-- `package_ensure`: What state the packages should be in. This parameter is deprecated and will be removed. Please use `$libnss_stns_ensure` and `$libpam_stns_ensure` instead.
 - `libnss_stns_ensure`: What state the libnss-stns package should be in.
 - `libpam_stns_ensure`: What state the libpam-stns package should be in.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
