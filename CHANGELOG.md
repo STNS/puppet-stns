@@ -1,3 +1,7 @@
+## [v x.y.z](https://github.com/STNS/puppet-stns/compare/v2.1.0...master) (unreleased)
+
+* Update README [#33](https://github.com/STNS/puppet-stns/pull/33) ([yano3](https://github.com/yano3))
+
 ## [v2.1.0](https://github.com/STNS/puppet-stns/compare/v2.0.1...v2.1.0) (2017-12-07)
 
 * Update tests and metadata.json [#32](https://github.com/STNS/puppet-stns/pull/32) ([hfm](https://github.com/hfm))
