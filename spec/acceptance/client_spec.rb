@@ -43,29 +43,29 @@ describe 'stns::client class' do
     EOS
   end
 
-  it 'should work without errors' do
+  it 'works without errors' do
     result = apply_manifest(manifest, catch_failures: true)
     expect(result.exit_code).to eq 2
   end
 
-  it 'should run a second time without changes' do
+  it 'runs a second time without changes' do
     result = apply_manifest(manifest)
     expect(result.exit_code).to eq 0
   end
 
-  %w(
+  %w[
     libnss-stns
     libpam-stns
-  ).each do |pkg|
+  ].each do |pkg|
     describe package(pkg) do
-      it { should be_installed }
+      it { is_expected.to be_installed }
     end
   end
 
   describe file('/etc/stns/libnss_stns.conf') do
-    it { should be_file }
+    it { is_expected.to be_file }
 
-    it "configures" do
+    it 'configures' do
       conf = TomlRB.parse(subject.content)
 
       expect(conf['api_end_point']).to include 'http://stns1.example.jp:1104'
@@ -85,14 +85,14 @@ describe 'stns::client class' do
   end
 
   describe file('/etc/nsswitch.conf') do
-    its(:content) { should match /^\s*passwd:\s+files\s+stns/ }
-    its(:content) { should match /^\s*shadow:\s+files\s+stns/ }
-    its(:content) { should match /^\s*group:\s+files\s+stns/ }
+    its(:content) { is_expected.to match %r{^\s*passwd:\s+files\s+stns} }
+    its(:content) { is_expected.to match %r{^\s*shadow:\s+files\s+stns} }
+    its(:content) { is_expected.to match %r{^\s*group:\s+files\s+stns} }
   end
 
   describe file('/etc/ssh/sshd_config') do
-    its(:content) { should match /^\s*PubkeyAuthentication\s+yes$/ }
-    its(:content) { should match %r{^\s*AuthorizedKeysCommand\s+/usr/lib/stns/stns-key-wrapper$} }
-    its(:content) { should match /^\s*AuthorizedKeysCommand(User|RunAs)\s+root$/ }
+    its(:content) { is_expected.to match %r{^\s*PubkeyAuthentication\s+yes$} }
+    its(:content) { is_expected.to match %r{^\s*AuthorizedKeysCommand\s+/usr/lib/stns/stns-key-wrapper$} }
+    its(:content) { is_expected.to match %r{^\s*AuthorizedKeysCommand(User|RunAs)\s+root$} }
   end
 end
