@@ -63,10 +63,10 @@ describe 'stns::client class' do
   end
 
   describe file('/etc/stns/libnss_stns.conf') do
-    it { is_expected.to be_file }
+    subject(:libnss_stns) { described_class.content }
 
     it 'configures' do
-      conf = TomlRB.parse(subject.content)
+      conf = TomlRB.parse(libnss_stns)
 
       expect(conf['api_end_point']).to include 'http://stns1.example.jp:1104'
       expect(conf['api_end_point']).to include 'http://stns2.example.jp:1104'
