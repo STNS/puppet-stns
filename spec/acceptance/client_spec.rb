@@ -8,7 +8,7 @@ describe 'stns::client class' do
         ensure => installed,
       }
 
-      $ssh_service = $::osfamily ? {
+      $ssh_service = $facts['osfamily'] ? {
         'RedHat' => 'sshd',
         'Debian' => 'ssh',
       }
