@@ -12,7 +12,6 @@ before_install:
   - bundle -v
 script:
   - 'bundle exec rake $CHECK'
-bundler_args: --without system_tests
 rvm:
   - 2.4.1
 env:
@@ -33,6 +32,18 @@ matrix:
     -
       env: PUPPET_GEM_VERSION="~> 4.0" CHECK=spec
       rvm: 2.1.9
+    -
+      sudo: required
+      services: docker
+      env: BEAKER_set=centos7 BEAKER_debug=true CHECK=beaker
+    -
+      sudo: required
+      services: docker
+      env: BEAKER_set=stretch BEAKER_debug=true CHECK=beaker
+    -
+      sudo: required
+      services: docker
+      env: BEAKER_set=xenial BEAKER_debug=true CHECK=beaker
 branches:
   only:
     - master
