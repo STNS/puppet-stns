@@ -51,16 +51,14 @@ describe 'stns::server class' do
     its(:content) { is_expected.to match %r{^user\s+=\s+"sample"$} }
     its(:content) { is_expected.to match %r{^password\s+=\s+"s@mp1e"$} }
 
-    its(:content) { is_expected.to match %r{^\[users.sandbox\]$} }
-    its(:content) { is_expected.to match %r{^id = 1001$} }
+    its(:content) { is_expected.to match %r{^\[users.sandbox\]\nid = 1001$} }
     its(:content) { is_expected.to match %r{^group_id = 1001$} }
-    its(:content) { is_expected.to match /^directory = "\/home\/sandbox"$/ }
-    its(:content) { is_expected.to match /^shell = "\/bin\/bash"$/ }
+    its(:content) { is_expected.to match %r{^directory = "/home/sandbox"$} }
+    its(:content) { is_expected.to match %r{^shell = "/bin/bash"$} }
     its(:content) { is_expected.to match %r{^keys = \[".+"\]$} }
     its(:content) { is_expected.to match %r{^link_users = \["foo"\]$} }
 
-    its(:content) { is_expected.to match %r{^\[groups.sandbox\]$} }
-    its(:content) { is_expected.to match %r{^id = 1001$} }
+    its(:content) { is_expected.to match %r{^\[groups.sandbox\]\nid = 1001$} }
     its(:content) { is_expected.to match %r{^users = \["sandbox"\]$} }
   end
 

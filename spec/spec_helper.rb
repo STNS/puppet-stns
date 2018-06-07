@@ -27,6 +27,7 @@ if File.exist?(default_module_facts_path) && File.readable?(default_module_facts
 end
 
 RSpec.configure do |c|
+  c.mock_with :rspec
   c.default_facts = default_facts
   c.before :each do
     # set to strictest setting for testing
