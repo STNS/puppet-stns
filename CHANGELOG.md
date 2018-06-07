@@ -1,5 +1,6 @@
-## [v x.y.z](https://github.com/STNS/puppet-stns/compare/v2.1.0...master) (unreleased)
+## [v2.2.0](https://github.com/STNS/puppet-stns/compare/v2.1.0...v2.2.0) (2018-06-07)
 
+* Convert to be compatible with the PDK [#34](https://github.com/STNS/puppet-stns/pull/34) ([hfm](https://github.com/hfm))
 * Update README [#33](https://github.com/STNS/puppet-stns/pull/33) ([yano3](https://github.com/yano3))
 
 ## [v2.1.0](https://github.com/STNS/puppet-stns/compare/v2.0.1...v2.1.0) (2017-12-07)
