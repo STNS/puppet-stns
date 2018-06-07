@@ -7,32 +7,32 @@ describe 'stns class' do
     EOS
   end
 
-  it 'should work without errors' do
+  it 'works without errors' do
     result = apply_manifest(manifest, acceptable_exit_codes: [0, 2], catch_failures: true)
 
     expect(result.exit_code).not_to eq 4
     expect(result.exit_code).not_to eq 6
   end
 
-  it 'should run a second time without changes' do
+  it 'runs a second time without changes' do
     result = apply_manifest(manifest)
     expect(result.exit_code).to eq 0
   end
 
   context 'RedHat', if: os[:family] == 'redhat' do
     describe yumrepo('stns') do
-      it { should be_enabled }
+      it { is_expected.to be_enabled }
     end
 
     describe file('/etc/yum.repos.d/stns.repo') do
-      it { should be_file }
+      it { is_expected.to be_file }
     end
   end
 
-  context 'Debian', if: os[:family] =~ /^(ubuntu|debian)$/ do
+  context 'Debian', if: os[:family] =~ %r{^(ubuntu|debian)$} do
     describe file('/etc/apt/sources.list.d/stns.list') do
-      it { should be_file }
-      its(:content) { should match %r{^deb\s+http://repo.stns.jp/debian/\s+stns\s+main$} }
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match %r{^deb\s+http://repo.stns.jp/debian/\s+stns\s+main$} }
     end
   end
 end

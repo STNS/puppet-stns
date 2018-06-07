@@ -23,49 +23,47 @@ describe 'stns::server class' do
     EOS
   end
 
-  it 'should work without errors' do
+  it 'works without errors' do
     result = apply_manifest(manifest, acceptable_exit_codes: [0, 2], catch_failures: true)
     expect(result.exit_code).not_to eq 4
     expect(result.exit_code).not_to eq 6
   end
 
-  it 'should run a second time without changes' do
+  it 'runs a second time without changes' do
     result = apply_manifest(manifest)
     expect(result.exit_code).to eq 0
   end
 
   describe package('stns') do
-    it { should be_installed }
+    it { is_expected.to be_installed }
   end
 
   describe file('/etc/stns/conf.d') do
-    it { should be_directory }
-    it { should be_mode 755 }
-    it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { is_expected.to be_directory }
+    it { is_expected.to be_mode 755 }
+    it { is_expected.to be_owned_by 'root' }
+    it { is_expected.to be_grouped_into 'root' }
   end
 
   describe file('/etc/stns/stns.conf') do
-    it { should be_file }
-    its(:content) { should match /^port\s+=\s+1104$/ }
-    its(:content) { should match /^user\s+=\s+"sample"$/ }
-    its(:content) { should match /^password\s+=\s+"s@mp1e"$/ }
+    it { is_expected.to be_file }
+    its(:content) { is_expected.to match %r{^port\s+=\s+1104$} }
+    its(:content) { is_expected.to match %r{^user\s+=\s+"sample"$} }
+    its(:content) { is_expected.to match %r{^password\s+=\s+"s@mp1e"$} }
 
-    its(:content) { should match /^\[users.sandbox\]$/ }
-    its(:content) { should match /^id = 1001$/ }
-    its(:content) { should match /^group_id = 1001$/ }
-    its(:content) { should match /^directory = "\/home\/sandbox"$/ }
-    its(:content) { should match /^shell = "\/bin\/bash"$/ }
-    its(:content) { should match /^keys = \[".+"\]$/ }
-    its(:content) { should match /^link_users = \["foo"\]$/ }
+    its(:content) { is_expected.to match %r{^\[users.sandbox\]\nid = 1001$} }
+    its(:content) { is_expected.to match %r{^group_id = 1001$} }
+    its(:content) { is_expected.to match %r{^directory = "/home/sandbox"$} }
+    its(:content) { is_expected.to match %r{^shell = "/bin/bash"$} }
+    its(:content) { is_expected.to match %r{^keys = \[".+"\]$} }
+    its(:content) { is_expected.to match %r{^link_users = \["foo"\]$} }
 
-    its(:content) { should match /^\[groups.sandbox\]$/ }
-    its(:content) { should match /^id = 1001$/ }
-    its(:content) { should match /^users = \["sandbox"\]$/ }
+    its(:content) { is_expected.to match %r{^\[groups.sandbox\]\nid = 1001$} }
+    its(:content) { is_expected.to match %r{^users = \["sandbox"\]$} }
   end
 
   describe service('stns') do
-    it { should be_enabled }
-    it { should be_running }
+    it { is_expected.to be_enabled }
+    it { is_expected.to be_running }
   end
 end
