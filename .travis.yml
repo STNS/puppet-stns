@@ -7,41 +7,32 @@ before_install:
   - bundle -v
   - rm -f Gemfile.lock
   - gem update --system
-  - gem update bundler
   - gem --version
   - bundle -v
 script:
   - 'bundle exec rake $CHECK'
 rvm:
-  - 2.4.1
+  - 2.4.4
 env:
-  - PUPPET_GEM_VERSION="~> 5.0" CHECK=spec
+  global:
+    - BEAKER_PUPPET_COLLECTION=puppet5 PUPPET_GEM_VERSION="~> 5.0"
 matrix:
   fast_finish: true
   include:
-    -
-      env: CHECK=rubocop
-    -
-      env: CHECK="syntax lint"
-    -
-      env: CHECK=metadata_lint
-    -
-      env: CHECK=release_checks
-    -
-      env: CHECK=spec
-    -
-      env: PUPPET_GEM_VERSION="~> 4.0" CHECK=spec
+    - env: CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
+      bundler_args: --without system_tests
+    - env: CHECK=parallel_spec
+      bundler_args: --without system_tests
+    - env: PUPPET_GEM_VERSION="~> 4.0" CHECK=parallel_spec
       rvm: 2.1.9
-    -
-      sudo: required
+      bundler_args: --without system_tests
+    - sudo: required
       services: docker
       env: BEAKER_set=centos7 BEAKER_debug=true CHECK=beaker
-    -
-      sudo: required
+    - sudo: required
       services: docker
       env: BEAKER_set=stretch BEAKER_debug=true CHECK=beaker
-    -
-      sudo: required
+    - sudo: required
       services: docker
       env: BEAKER_set=xenial BEAKER_debug=true CHECK=beaker
 branches:

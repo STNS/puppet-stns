@@ -37,7 +37,7 @@ group :development do
 end
 
 group :system_tests do
-  gem 'beaker',       require: false
+  gem 'beaker', '~> 3.0', require: false
   gem 'beaker-rspec', require: false
   gem 'toml-rb',      require: false
 end

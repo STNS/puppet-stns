@@ -53,10 +53,7 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
-  %w[
-    libnss-stns
-    libpam-stns
-  ].each do |pkg|
+  ['libnss-stns', 'libpam-stns'].each do |pkg|
     describe package(pkg) do
       it { is_expected.to be_installed }
     end
