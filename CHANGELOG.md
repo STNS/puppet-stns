@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## [v2.3.0](https://github.com/STNS/puppet-stns/compare/v2.2.0...v2.3.0) (2018-10-02)
+
+* Support newer libraries [#35](https://github.com/STNS/puppet-stns/pull/35) ([hfm](https://github.com/hfm))
+
 ## [v2.2.0](https://github.com/STNS/puppet-stns/compare/v2.1.0...v2.2.0) (2018-06-07)
 
 * Convert to be compatible with the PDK [#34](https://github.com/STNS/puppet-stns/pull/34) ([hfm](https://github.com/hfm))
