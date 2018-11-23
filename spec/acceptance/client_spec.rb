@@ -36,7 +36,6 @@ describe 'stns::client class' do
           'x-api-key2' => 'bar',
         },
         libnss_stns_ensure => latest,
-        libpam_stns_ensure => latest,
         handle_nsswitch    => true,
         handle_sshd_config => true,
       }
@@ -53,10 +52,8 @@ describe 'stns::client class' do
     expect(result.exit_code).to eq 0
   end
 
-  ['libnss-stns', 'libpam-stns'].each do |pkg|
-    describe package(pkg) do
-      it { is_expected.to be_installed }
-    end
+  describe package('libnss-stns-v2') do
+    it { is_expected.to be_installed }
   end
 
   describe file('/etc/stns/libnss_stns.conf') do

@@ -15,7 +15,6 @@ class stns::client (
   Integer                $uid_shift          = 0,
   Integer                $gid_shift          = 0,
   String                 $libnss_stns_ensure = 'present',
-  String                 $libpam_stns_ensure = 'present',
   Boolean                $handle_nsswitch    = false,
   Boolean                $handle_sshd_config = false,
 ) {
