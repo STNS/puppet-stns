@@ -34,7 +34,7 @@ describe 'stns::server class' do
     expect(result.exit_code).to eq 0
   end
 
-  describe package('stns') do
+  describe package('stns-v2') do
     it { is_expected.to be_installed }
   end
 
