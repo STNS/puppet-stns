@@ -53,7 +53,7 @@ describe 'stns::client class' do
     it { is_expected.to be_installed }
   end
 
-  describe file('/etc/stns/libnss_stns.conf') do
+  describe file('/etc/stns/client/stns.conf') do
     subject(:libnss_stns) { described_class.content }
 
     it 'configures' do
