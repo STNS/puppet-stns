@@ -18,10 +18,7 @@ describe 'stns::client class' do
       }
 
       class { '::stns::client':
-        api_end_point      => [
-          'http://stns1.example.jp:1104',
-          'http://stns2.example.jp:1104',
-        ],
+        api_end_point      => 'http://stns.example.jp:1104',
         user               => 'sample',
         password           => 's@mp1e',
         wrapper_path       => '/usr/local/bin/stns-query-wrapper',
@@ -62,8 +59,7 @@ describe 'stns::client class' do
     it 'configures' do
       conf = TomlRB.parse(libnss_stns)
 
-      expect(conf['api_end_point']).to include 'http://stns1.example.jp:1104'
-      expect(conf['api_end_point']).to include 'http://stns2.example.jp:1104'
+      expect(conf['api_endpoint']).to eq 'http://stns.example.jp:1104'
       expect(conf['user']).to eq 'sample'
       expect(conf['password']).to eq 's@mp1e'
       expect(conf['wrapper_path']).to eq '/usr/local/bin/stns-query-wrapper'
