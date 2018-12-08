@@ -45,7 +45,7 @@ describe 'stns::server class' do
     it { is_expected.to be_grouped_into 'root' }
   end
 
-  describe file('/etc/stns/stns.conf') do
+  describe file('/etc/stns/server/stns.conf') do
     it { is_expected.to be_file }
     its(:content) { is_expected.to match %r{^port\s+=\s+1104$} }
     its(:content) { is_expected.to match %r{^user\s+=\s+"sample"$} }
