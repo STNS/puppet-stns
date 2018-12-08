@@ -55,7 +55,6 @@ describe 'stns::client class' do
   end
 
   describe file('/etc/stns/client/stns.conf') do
-    subject(:libnss_stns) { described_class.content }
     its(:content) { is_expected.to match %r{^api_endpoint = "http://stns.example.jp:1104"$} }
     its(:content) { is_expected.to match %r{^auth_token = "xxxxexamplxxxxx"$} }
     its(:content) { is_expected.to match %r{^user = "sample"$} }
