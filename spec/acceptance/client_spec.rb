@@ -1,5 +1,4 @@
 require 'spec_helper_acceptance'
-require 'toml-rb'
 
 describe 'stns::client class' do
   let(:manifest) do
@@ -19,12 +18,14 @@ describe 'stns::client class' do
 
       class { '::stns::client':
         api_end_point      => 'http://stns.example.jp:1104',
+        auth_token         => 'xxxxexamplxxxxx',
         user               => 'sample',
         password           => 's@mp1e',
         wrapper_path       => '/usr/local/bin/stns-query-wrapper',
         chain_ssh_wrapper  => '/usr/libexec/openssh/ssh-ldap-wrapper',
         ssl_verify         => true,
         request_timeout    => 3,
+        request_retry      => 1,
         http_proxy         => 'http://proxy.example.com:1104',
         uid_shift          => 0,
         gid_shift          => 0,
@@ -55,23 +56,18 @@ describe 'stns::client class' do
 
   describe file('/etc/stns/client/stns.conf') do
     subject(:libnss_stns) { described_class.content }
-
-    it 'configures' do
-      conf = TomlRB.parse(libnss_stns)
-
-      expect(conf['api_endpoint']).to eq 'http://stns.example.jp:1104'
-      expect(conf['user']).to eq 'sample'
-      expect(conf['password']).to eq 's@mp1e'
-      expect(conf['wrapper_path']).to eq '/usr/local/bin/stns-query-wrapper'
-      expect(conf['chain_ssh_wrapper']).to eq '/usr/libexec/openssh/ssh-ldap-wrapper'
-      expect(conf['ssl_verify']).to eq true
-      expect(conf['request_timeout']).to eq 3
-      expect(conf['http_proxy']).to eq 'http://proxy.example.com:1104'
-      expect(conf['uid_shift']).to eq 0
-      expect(conf['gid_shift']).to eq 0
-      expect(conf['request_header']['x-api-key1']).to eq 'foo'
-      expect(conf['request_header']['x-api-key2']).to eq 'bar'
-    end
+    its(:content) { is_expected.to match %r{^api_endpoint = "http://stns.example.jp:1104"$} }
+    its(:content) { is_expected.to match %r{^auth_token = "xxxxexamplxxxxx"$} }
+    its(:content) { is_expected.to match %r{^user = "sample"$} }
+    its(:content) { is_expected.to match %r{^password = "s@mple"$} }
+    its(:content) { is_expected.to match %r{^chain_ssh_wrapper = "/usr/libexec/openssh/ssh-ldap-wrapper"$} }
+    its(:content) { is_expected.to match %r{^query_wrapper = "/usr/local/bin/stns-query-wrapper"$} }
+    its(:content) { is_expected.to match %r{^ssl_verify = true$} }
+    its(:content) { is_expected.to match %r{^http_proxy = "http://proxy.example.jp:1104"$} }
+    its(:content) { is_expected.to match %r{^uid_shift = 0$} }
+    its(:content) { is_expected.to match %r{^gid_shift = 0$} }
+    its(:content) { is_expected.to match %r{^request_timeout = 3$} }
+    its(:content) { is_expected.to match %r{^request_retry = 1$} }
   end
 
   describe file('/etc/nsswitch.conf') do
