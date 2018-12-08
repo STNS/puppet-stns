@@ -29,10 +29,6 @@ describe 'stns::client class' do
         http_proxy         => 'http://proxy.example.com:1104',
         uid_shift          => 0,
         gid_shift          => 0,
-        request_header     => {
-          'x-api-key1' => 'foo',
-          'x-api-key2' => 'bar',
-        },
         libnss_stns_ensure => latest,
         handle_nsswitch    => true,
         handle_sshd_config => true,
