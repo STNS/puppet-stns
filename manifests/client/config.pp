@@ -17,12 +17,12 @@ class stns::client::config (
   $gid_shift         = $stns::client::gid_shift,
 ){
 
-  file { '/etc/stns/libnss_stns.conf':
+  file { '/etc/stns/client/stns.conf':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('stns/libnss_stns.conf.erb'),
+    content => template('stns/client/stns.conf.erb'),
   }
 
 }
