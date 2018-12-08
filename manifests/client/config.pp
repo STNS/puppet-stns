@@ -5,6 +5,7 @@
 
 class stns::client::config (
   $api_end_point     = $stns::client::api_end_point,
+  $auth_token        = $stns::client::auth_token,
   $user              = $stns::client::user,
   $password          = $stns::client::password,
   $wrapper_path      = $stns::client::wrapper_path,
