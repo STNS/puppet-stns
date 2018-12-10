@@ -4,7 +4,7 @@
 # stns::client::install is to install libnss-stns files.
 
 class stns::client::install (
-  $libnss_stns_ensure = $stns::client::libnss_stns_ensure,
+  String $libnss_stns_ensure = $stns::client::libnss_stns_ensure,
 ){
 
   package { 'libnss-stns-v2':
