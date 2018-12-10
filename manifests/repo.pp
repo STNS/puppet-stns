@@ -11,7 +11,7 @@ class stns::repo {
       yumrepo { 'stns':
         ensure   => present,
         descr    => 'stns',
-        baseurl  => 'http://repo.stns.jp/centos/$basearch',
+        baseurl  => 'http://repo.stns.jp/centos/$basearch/$releasever',
         enabled  => 1,
         gpgcheck => 1,
         gpgkey   => $gpgkey_url,
