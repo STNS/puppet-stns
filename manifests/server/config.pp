@@ -4,9 +4,10 @@
 # stns::server::config is to configure stns.
 
 class stns::server::config (
-  $port     = $stns::server::port,
-  $user     = $stns::server::user,
-  $password = $stns::server::password,
+  Integer          $port     = $stns::server::port,
+  Optional[String] $user     = $stns::server::user,
+  Optional[String] $tokens   = $stns::server::tokens,
+  Optional[Array]  $password = $stns::server::password,
 ){
 
   concat { '/etc/stns/server/stns.conf':

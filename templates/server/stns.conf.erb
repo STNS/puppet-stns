@@ -2,7 +2,13 @@
 port = <%= @port %>
 include = "/etc/stns/conf.d/*"
 
-## support basic auth
+<%- if @user and @password -%>
+[basic_auth]
 user = "<%= @user %>"
 password = "<%= @password %>"
+<%- end -%>
 
+<%- if @tokens -%>
+[token_auth]
+tokens = [<%= @tokens.map{|t| "\"#{t}\""}.join(', ') %>]
+<%- end -%>
