@@ -6,8 +6,8 @@
 class stns::server::config (
   Integer          $port     = $stns::server::port,
   Optional[String] $user     = $stns::server::user,
-  Optional[String] $tokens   = $stns::server::tokens,
-  Optional[Array]  $password = $stns::server::password,
+  Optional[String] $password = $stns::server::password,
+  Optional[Array]  $tokens   = $stns::server::tokens,
 ){
 
   concat { '/etc/stns/server/stns.conf':
