@@ -54,7 +54,7 @@ describe 'stns::client class' do
     its(:content) { is_expected.to match %r{^api_endpoint = "http://stns.example.jp:1104"$} }
     its(:content) { is_expected.to match %r{^auth_token = "xxxxexamplxxxxx"$} }
     its(:content) { is_expected.to match %r{^user = "sample"$} }
-    its(:content) { is_expected.to match %r{^password = "s@mple"$} }
+    its(:content) { is_expected.to match %r{^password = "s@mp1e"$} }
     its(:content) { is_expected.to match %r{^chain_ssh_wrapper = "/usr/libexec/openssh/ssh-ldap-wrapper"$} }
     its(:content) { is_expected.to match %r{^query_wrapper = "/usr/local/bin/stns-query-wrapper"$} }
     its(:content) { is_expected.to match %r{^ssl_verify = true$} }
