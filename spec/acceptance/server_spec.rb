@@ -7,6 +7,9 @@ describe 'stns::server class' do
         port     => 1104,
         user     => 'sample',
         password => 's@mp1e',
+        tokens   => [
+          'xxxxexamplxxxxx',
+        ],
       }
 
       ::stns::server::users { 'sandbox':
