@@ -6,6 +6,7 @@
 define stns::server::groups (
   Integer $id,
   Variant[String, Array, Undef] $users,
+  Optional[Array] $link_groups,
 ) {
 
   concat::fragment { "groups_${title}":
