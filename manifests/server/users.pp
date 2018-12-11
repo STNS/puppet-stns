@@ -10,6 +10,8 @@ define stns::server::users (
   Variant[String, Array] $link_users,
   String $directory = "/home/${title}",
   String $shell = '/bin/bash',
+  Optional[String] $gecos,
+  Optional[String] $password,
 ) {
 
   concat::fragment { "users_${title}":
