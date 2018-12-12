@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [v3.0.0](https://github.com/STNS/puppet-stns/compare/v2.3.0...v3.0.0) (2018-12-13)
+
+**Breaking change:**
+
+* Support STNS v2 [#37](https://github.com/STNS/puppet-stns/pull/37) ([hfm](https://github.com/hfm))
+
 ## [v2.3.0](https://github.com/STNS/puppet-stns/compare/v2.2.0...v2.3.0) (2018-10-02)
 
 * Support newer libraries [#35](https://github.com/STNS/puppet-stns/pull/35) ([hfm](https://github.com/hfm))
