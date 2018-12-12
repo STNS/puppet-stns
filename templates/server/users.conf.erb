@@ -3,6 +3,12 @@ id = <%= @id %>
 group_id = <%= @group_id %>
 directory = "<%= @directory %>"
 shell = "<%= @shell %>"
+<%- if @gecos -%>
+gecos = "<%= @gecos %>"
+<%- end -%>
 keys = [<%= [@keys].flatten.map{|u| "\"#{u}\""}.join(', ') %>]
 link_users = [<%= [@link_users].flatten.map{|u| "\"#{u}\""}.join(', ') %>]
+<%- if @password -%>
+password = "<%= @password %>"
+<%- end -%>
 

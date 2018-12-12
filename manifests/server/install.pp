@@ -7,7 +7,7 @@ class stns::server::install (
   $_ensure = $stns::server::package_ensure,
 ){
 
-  package { 'stns':
+  package { 'stns-v2':
     ensure => $_ensure,
   }
 

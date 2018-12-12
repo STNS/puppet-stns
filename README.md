@@ -46,7 +46,7 @@ To install the STNS server with default parameters, declare the `stns::server` c
 include ::stns::server
 ```
 
-To install the STNS client (libnss\_stns and libpam\_stns) with default parameters, declare the `stns::client` class.
+To install the STNS client (libnss\_stns) with default parameters, declare the `stns::client` class.
 
 ```puppet
 include ::stns::client
@@ -104,7 +104,6 @@ class { '::stns::client':
   request_timeout    => 3,
   http_proxy         => 'http://proxy.example.com:1104',
   libnss_stns_ensure => latest,
-  libpam_stns_ensure => latest,
   handle_nsswitch    => true,
   handle_sshd_config => true,
 }
@@ -130,7 +129,6 @@ stns::client::ssl_verify: true
 stns::client::request_timeout: 3
 stns::client::http_proxy: 'http://proxy.example.com:1104'
 stns::client::libnss_stns_ensure: latest
-stns::client::libpam_stns_ensure: latest
 stns::client::handle_nsswitch: true
 stns::client::handle_sshd_config: true
 ```
@@ -140,7 +138,7 @@ stns::client::handle_sshd_config: true
 ### Public Classes
 
 - [`stns::server`](#stnsserver): Installs and configures STNS.
-- [`stns::client`](#stnsclient): Installs and configures libnss\_stns and libpam\_stns.
+- [`stns::client`](#stnsclient): Installs and configures libnss\_stns.
 
 ### Private Classes
 
@@ -148,7 +146,7 @@ stns::client::handle_sshd_config: true
 - `stns::server::install`: Installs STNS package.
 - `stns::server::config`: Configures STNS.
 - `stns::server::server`: Manages service.
-- `stns::client::install`: Installs packages for libnss\_stns and libpam\_stns.
+- `stns::client::install`: Installs packages for libnss\_stns.
 - `stns::client::config`: Configures
 
 ### Defined Types
@@ -178,7 +176,6 @@ stns::client::handle_sshd_config: true
 - `uid_shift`: Shift uid. Valid options: a number. Default: 0.
 - `gid_shift`: Shift gid. Valid options: a number. Default: 0.
 - `libnss_stns_ensure`: What state the libnss-stns package should be in.
-- `libpam_stns_ensure`: What state the libpam-stns package should be in.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 - `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.
 

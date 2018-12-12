@@ -6,6 +6,7 @@ describe 'stns::server::groups' do
     {
       id:    1001,
       users: 'sample',
+      link_groups: :undef,
     }
   end
 

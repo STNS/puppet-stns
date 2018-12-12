@@ -10,11 +10,13 @@ define stns::server::users (
   Variant[String, Array] $link_users,
   String $directory = "/home/${title}",
   String $shell = '/bin/bash',
+  Optional[String] $gecos,
+  Optional[String] $password,
 ) {
 
   concat::fragment { "users_${title}":
-    target  => '/etc/stns/stns.conf',
-    content => template('stns/users.conf.erb'),
+    target  => '/etc/stns/server/stns.conf',
+    content => template('stns/server/users.conf.erb'),
     order   => '41';
   }
 

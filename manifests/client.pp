@@ -3,21 +3,21 @@
 #
 # stns::client is to install and configure libnss-stns.
 class stns::client (
-  Variant[String, Array] $api_end_point      = 'http://localhost:1104',
-  Optional[String]       $user               = undef,
-  Optional[String]       $password           = undef,
-  String                 $wrapper_path       = '/usr/local/bin/stns-query-wrapper',
-  Optional[String]       $chain_ssh_wrapper  = undef,
-  Boolean                $ssl_verify         = true,
-  Integer                $request_timeout    = 3,
-  Optional[String]       $http_proxy         = undef,
-  Optional[Hash]         $request_header     = undef,
-  Integer                $uid_shift          = 0,
-  Integer                $gid_shift          = 0,
-  String                 $libnss_stns_ensure = 'present',
-  String                 $libpam_stns_ensure = 'present',
-  Boolean                $handle_nsswitch    = false,
-  Boolean                $handle_sshd_config = false,
+  Optional[String]  $api_end_point,
+  Optional[String]  $auth_token,
+  Optional[String]  $user,
+  Optional[String]  $password,
+  Optional[String]  $wrapper_path,
+  Optional[String]  $chain_ssh_wrapper,
+  Optional[Boolean] $ssl_verify,
+  Optional[Integer] $request_timeout,
+  Optional[Integer] $request_retry,
+  Optional[String]  $http_proxy,
+  Optional[Integer] $uid_shift,
+  Optional[Integer] $gid_shift,
+  String            $libnss_stns_ensure = 'present',
+  Boolean           $handle_nsswitch    = false,
+  Boolean           $handle_sshd_config = false,
 ) {
 
   require stns::repo

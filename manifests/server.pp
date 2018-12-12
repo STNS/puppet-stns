@@ -4,9 +4,10 @@
 # stns::server is to install and configure stns.
 
 class stns::server (
-  Integer          $port           = 1104,
-  Optional[String] $user           = undef,
-  Optional[String] $password       = undef,
+  Integer          $port = 1104,
+  Optional[String] $user,
+  Optional[String] $password,
+  Optional[Array]  $tokens,
   String           $package_ensure = 'present',
 ) {
 

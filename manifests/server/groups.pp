@@ -6,11 +6,12 @@
 define stns::server::groups (
   Integer $id,
   Variant[String, Array, Undef] $users,
+  Optional[Array] $link_groups,
 ) {
 
   concat::fragment { "groups_${title}":
-    target  => '/etc/stns/stns.conf',
-    content => template('stns/groups.conf.erb'),
+    target  => '/etc/stns/server/stns.conf',
+    content => template('stns/server/groups.conf.erb'),
     order   => '61',
   }
 

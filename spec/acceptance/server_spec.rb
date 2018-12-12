@@ -7,6 +7,9 @@ describe 'stns::server class' do
         port     => 1104,
         user     => 'sample',
         password => 's@mp1e',
+        tokens   => [
+          'xxxxexamplxxxxx',
+        ],
       }
 
       ::stns::server::users { 'sandbox':
@@ -14,11 +17,14 @@ describe 'stns::server class' do
         group_id   => 1001,
         keys       => 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
         link_users => 'foo',
+        gecos      => undef,
+        password   => undef,
       }
 
       ::stns::server::groups { 'sandbox':
-        id    => 1001,
-        users => 'sandbox',
+        id          => 1001,
+        users       => 'sandbox',
+        link_groups => undef,
       }
     EOS
   end
@@ -34,7 +40,7 @@ describe 'stns::server class' do
     expect(result.exit_code).to eq 0
   end
 
-  describe package('stns') do
+  describe package('stns-v2') do
     it { is_expected.to be_installed }
   end
 
@@ -45,7 +51,7 @@ describe 'stns::server class' do
     it { is_expected.to be_grouped_into 'root' }
   end
 
-  describe file('/etc/stns/stns.conf') do
+  describe file('/etc/stns/server/stns.conf') do
     it { is_expected.to be_file }
     its(:content) { is_expected.to match %r{^port\s+=\s+1104$} }
     its(:content) { is_expected.to match %r{^user\s+=\s+"sample"$} }

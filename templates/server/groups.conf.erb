@@ -1,0 +1,7 @@
+[groups.<%= @name %>]
+id = <%= @id %>
+users = [<%= [@users].flatten.map{|u| "\"#{u}\""}.join(', ') %>]
+<%- if @link_groups -%>
+users = [<%= [@link_groups].flatten.map{|g| "\"#{g}\""}.join(', ') %>]
+<%- end -%>
+

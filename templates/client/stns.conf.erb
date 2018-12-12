@@ -1,0 +1,37 @@
+# This file is managed by Puppet. DO NOT EDIT.
+<%- if @api_end_point -%>
+api_endpoint = "<%= @api_end_point %>"
+<%- end -%>
+<%- if @auth_token -%>
+auth_token = "<%= @auth_token %>"
+<%- end -%>
+<%- if @user -%>
+user = "<%= @user %>"
+<%- end -%>
+<%- if @password -%>
+password = "<%= @password %>"
+<%- end -%>
+<%- if @chain_ssh_wrapper -%>
+chain_ssh_wrapper = "<%= @chain_ssh_wrapper %>"
+<%- end -%>
+<%- if @wrapper_path -%>
+query_wrapper = "<%= @wrapper_path %>"
+<%- end -%>
+<%- if @ssl_verify -%>
+ssl_verify = <%= @ssl_verify %>
+<%- end -%>
+<%- if @http_proxy -%>
+http_proxy = "<%= @http_proxy %>"
+<%- end -%>
+<%- if @uid_shift -%>
+uid_shift = <%= @uid_shift %>
+<%- end -%>
+<%- if @gid_shift -%>
+gid_shift = <%= @gid_shift %>
+<%- end -%>
+<%- if @request_timeout -%>
+request_timeout = <%= @request_timeout %>
+<%- end -%>
+<%- if @request_retry -%>
+request_retry = <%= @request_retry %>
+<%- end -%>

@@ -39,7 +39,6 @@ end
 group :system_tests do
   gem 'beaker', '~> 3.0', require: false
   gem 'beaker-rspec', require: false
-  gem 'toml-rb',      require: false
 end
 
 puppet_version = ENV['PUPPET_GEM_VERSION']
