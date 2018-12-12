@@ -17,11 +17,14 @@ describe 'stns::server class' do
         group_id   => 1001,
         keys       => 'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
         link_users => 'foo',
+        gecos      => undef,
+        password   => undef,
       }
 
       ::stns::server::groups { 'sandbox':
-        id    => 1001,
-        users => 'sandbox',
+        id          => 1001,
+        users       => 'sandbox',
+        link_groups => undef,
       }
     EOS
   end
