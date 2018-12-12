@@ -10,6 +10,8 @@ describe 'stns::server::users' do
       shell:      '/bin/bash',
       keys:       'ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3Mk+/KUhwDvZ7tthykjzU4KHNWPb9F8CLK6agvVxNijfG51Yg8mBsPqafCqHdFB15M1CisDK7iyTGhcwvHNDA= sample@local',
       link_users: 'sample',
+      gecos:      :undef,
+      password:   :undef,
     }
   end
 
