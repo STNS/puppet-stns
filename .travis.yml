@@ -12,7 +12,7 @@ before_install:
 script:
   - 'bundle exec rake $CHECK'
 rvm:
-  - 2.4.4
+  - 2.5.1
 env:
   global:
     - BEAKER_PUPPET_COLLECTION=puppet5 PUPPET_GEM_VERSION="~> 5.0"
@@ -22,6 +22,9 @@ matrix:
     - env: CHECK="syntax lint metadata_lint check:symlinks check:git_ignore check:dot_underscore check:test_file rubocop"
       bundler_args: --without system_tests
     - env: CHECK=parallel_spec
+      bundler_args: --without system_tests
+    - env: PUPPET_GEM_VERSION="~> 5.0" CHECK=parallel_spec
+      rvm: 2.4.4
       bundler_args: --without system_tests
     - env: PUPPET_GEM_VERSION="~> 4.0" CHECK=parallel_spec
       rvm: 2.1.9
