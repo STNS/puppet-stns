@@ -1,0 +1,22 @@
+---
+stns::client::api_end_point: ~
+stns::client::auth_token: ~
+stns::client::user: ~
+stns::client::password: ~
+stns::client::wrapper_path: ~
+stns::client::chain_ssh_wrapper: ~
+stns::client::ssl_verify: ~
+stns::client::request_timeout: ~
+stns::client::request_retry: ~
+stns::client::http_proxy: ~
+stns::client::uid_shift: ~
+stns::client::gid_shift: ~
+stns::client::libnss_stns_ensure: present
+stns::client::handle_nsswitch: false
+stns::client::handle_sshd_config: false
+
+stns::server::port: 1104
+stns::server::user: ~
+stns::server::password: ~
+stns::server::tokens: ~
+stns::server::package_ensure: present
