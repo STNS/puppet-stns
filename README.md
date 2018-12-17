@@ -92,10 +92,7 @@ stns::server::groups { 'sample':
 
 ```puppet
 class { '::stns::client':
-  api_end_point      => [
-    'http://stns1.example.jp:1104',
-    'http://stns2.example.jp:1104',
-  ],
+  api_end_point      => 'http://stns.example.jp:1104',
   user               => 'sample',
   password           => 's@mp1e',
   wrapper_path       => '/usr/local/bin/stns-query-wrapper',
@@ -118,9 +115,7 @@ stns::server::user: sample
 stns::server::password: s@mp1e
 stns::server::package_ensure: latest
 
-stns::client::api_end_point:
-  - 'http://stns1.example.jp:1104'
-  - 'http://stns2.example.jp:1104'
+stns::client::api_end_point: 'http://stns1.example.jp:1104'
 stns::client::user: sample
 stns::client::password: s@mp1e
 stns::client::wrapper_path: '/usr/local/bin/stns-query-wrapper'
@@ -159,20 +154,20 @@ stns::client::handle_sshd_config: true
 #### Class: `stns::server`
 
 - `port`: Specifies a listen port listen. Valid options: a number of a port number. Default: 1104.
-- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
-- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
+- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: undef.
+- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: undef.
 - `package_ensure`: What state the packages should be in.
 
 #### Class: `stns::client`
 
-- `api_end_point`: Valid options: Default: 'http://localhost:1104'.
-- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: 'undef'.
-- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: 'undef'.
+- `api_end_point`: Valid options: a string containing a valid url. Default: undef.
+- `user`: Specifies a user for authentication. Valid options: a string containing a valid username. Default: undef.
+- `password`: Specifies a password for authentication. Valid options: a string containing a valid password. Default: undef.
 - `wrapper_path`: Valid options: absolute path. Default: '/usr/local/bin/stns-query-wrapper'.
-- `chain_ssh_wrapper`: Default: 'undef'.
+- `chain_ssh_wrapper`: Default: undef.
 - `ssl_verify`: Enables SSL verification. Valid options: a boolean. Default: true.
 - `request_timeout`: Wrapper Command Timeout. Valid options: a number. Default: 3.
-- `http_proxy`: Valid options: a string. Default: 'undef'.
+- `http_proxy`: Valid options: a string. Default: undef.
 - `uid_shift`: Shift uid. Valid options: a number. Default: 0.
 - `gid_shift`: Shift gid. Valid options: a number. Default: 0.
 - `libnss_stns_ensure`: What state the libnss-stns package should be in.
