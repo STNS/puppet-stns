@@ -19,6 +19,10 @@ RSpec.configure do |c|
       if host.platform =~ %r{(debian|ubuntu)}
         on(host, puppet('module', 'install', 'puppetlabs-apt'))
       end
+
+      host[:hieradatadir] = 'hieradata'
+      write_hiera_config_on(host, ['%{facts.os.family}', 'common'])
+      copy_hiera_data_to(host, File.join(module_root, 'spec', 'fixtures', 'hieradata'))
     end
   end
 end
