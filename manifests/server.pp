@@ -5,9 +5,9 @@
 
 class stns::server (
   Integer          $port = 1104,
-  Optional[String] $user,
-  Optional[String] $password,
-  Optional[Array]  $tokens,
+  Optional[String] $user = undef,
+  Optional[String] $password = undef,
+  Optional[Array]  $tokens = undef,
   String           $package_ensure = 'present',
 ) {
 
