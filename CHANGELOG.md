@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## [v3.0.1](https://github.com/STNS/puppet-stns/compare/v3.0.0...v3.0.1) (2019-04-24)
+
+* needs initial values even though optional [#40](https://github.com/STNS/puppet-stns/pull/40) ([tnmt](https://github.com/tnmt))
+* Fix CI [#41](https://github.com/STNS/puppet-stns/pull/41) ([hfm](https://github.com/hfm))
+* Hiera [#39](https://github.com/STNS/puppet-stns/pull/39) ([hfm](https://github.com/hfm))
+* pdk 1.8.0 [#38](https://github.com/STNS/puppet-stns/pull/38) ([hfm](https://github.com/hfm))
+
 ## [v3.0.0](https://github.com/STNS/puppet-stns/compare/v2.3.0...v3.0.0) (2018-12-13)
 
 **Breaking change:**
