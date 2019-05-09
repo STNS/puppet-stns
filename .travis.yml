@@ -38,7 +38,6 @@ matrix:
     - sudo: required
       services: docker
       env: BEAKER_set=xenial BEAKER_debug=true CHECK=beaker
-  allow_failures:
     - sudo: required
       services: docker
       env: BEAKER_set=stretch BEAKER_debug=true CHECK=beaker
