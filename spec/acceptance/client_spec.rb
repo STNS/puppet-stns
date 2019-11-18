@@ -29,6 +29,10 @@ describe 'stns::client class' do
         http_proxy         => 'http://proxy.example.com:1104',
         uid_shift          => 0,
         gid_shift          => 0,
+        cache              => true,
+        cache_dir          => '/var/cache/stns',
+        cache_ttl          => 600,
+        negative_cache_ttl => 60,
         libnss_stns_ensure => latest,
         handle_nsswitch    => true,
         handle_sshd_config => true,
@@ -63,6 +67,10 @@ describe 'stns::client class' do
     its(:content) { is_expected.to match %r{^gid_shift = 0$} }
     its(:content) { is_expected.to match %r{^request_timeout = 3$} }
     its(:content) { is_expected.to match %r{^request_retry = 1$} }
+    its(:content) { is_expected.to match %r{^cache = true$} }
+    its(:content) { is_expected.to match %r{^cache_dir = "/var/cache/stns"$} }
+    its(:content) { is_expected.to match %r{^cache_ttl = 600$} }
+    its(:content) { is_expected.to match %r{^negative_cache_ttl = 60$} }
   end
 
   describe file('/etc/nsswitch.conf') do

@@ -35,3 +35,15 @@ request_timeout = <%= @request_timeout %>
 <%- if @request_retry -%>
 request_retry = <%= @request_retry %>
 <%- end -%>
+<%- if @cache -%>
+cache = <%= @cache %>
+<%- end -%>
+<%- if @cache_dir -%>
+cache_dir = "<%= @cache_dir %>"
+<%- end -%>
+<%- if @cache_ttl -%>
+cache_ttl = <%= @cache_ttl %>
+<%- end -%>
+<%- if @negative_cache_ttl -%>
+negative_cache_ttl = <%= @negative_cache_ttl %>
+<%- end -%>
