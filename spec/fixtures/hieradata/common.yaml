@@ -11,6 +11,10 @@ stns::client::request_retry: ~
 stns::client::http_proxy: ~
 stns::client::uid_shift: ~
 stns::client::gid_shift: ~
+stns::client::cache: ~
+stns::client::cache_dir: ~
+stns::client::cache_ttl: ~
+stns::client::negative_cache_ttl: ~
 stns::client::libnss_stns_ensure: present
 stns::client::handle_nsswitch: false
 stns::client::handle_sshd_config: false
