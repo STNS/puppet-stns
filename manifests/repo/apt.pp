@@ -4,7 +4,7 @@ class stns::repo::apt {
     $location = "https://repo.stns.jp/${codename}/"
     $repos    = $codename
   } else {
-    $location = "https://repo.stns.jp/debian/"
+    $location = 'https://repo.stns.jp/debian/'
     $repos    = 'main'
   }
 
