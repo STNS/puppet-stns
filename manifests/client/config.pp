@@ -28,7 +28,7 @@ class stns::client::config (
     group   => 'root',
     mode    => '0644',
     content => template('stns/client/stns.conf.erb'),
-    notify => Class['stns::client::service'],
+    notify  => Class['stns::client::service'],
   }
 
 }
