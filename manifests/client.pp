@@ -19,7 +19,9 @@ class stns::client (
   Optional[String]  $cache_dir = undef,
   Optional[Integer] $cache_ttl = undef,
   Optional[Integer] $negative_cache_ttl = undef,
+  Optional[Boolean] $use_cached = undef,
   String            $libnss_stns_ensure = 'present',
+  String            $cache_stnsd_ensure = 'present',
   Boolean           $handle_nsswitch    = false,
   Boolean           $handle_sshd_config = false,
 ) {
@@ -28,10 +30,12 @@ class stns::client (
 
   include stns::client::install
   include stns::client::config
+  include stns::client::service
 
   Class['stns::repo']
   -> Class['stns::client::install']
   -> Class['stns::client::config']
+  -> Class['stns::client::service']
 
   if $handle_nsswitch {
     augeas { 'nsswitch stns':

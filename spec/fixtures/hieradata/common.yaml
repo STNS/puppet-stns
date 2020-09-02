@@ -16,6 +16,7 @@ stns::client::cache_dir: ~
 stns::client::cache_ttl: ~
 stns::client::negative_cache_ttl: ~
 stns::client::libnss_stns_ensure: present
+stns::client::cache_stnsd_ensure: present
 stns::client::handle_nsswitch: false
 stns::client::handle_sshd_config: false
 
