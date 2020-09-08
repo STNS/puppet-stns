@@ -18,6 +18,8 @@ class stns::client::config (
   Optional[Integer] $gid_shift          = $stns::client::gid_shift,
   Optional[Boolean] $cache              = $stns::client::cache,
   Optional[Boolean] $use_cached         = $stns::client::use_cached,
+  Optional[Boolean] $cached_enable      = $stns::client::cached_enable,
+  Optional[Boolean] $cached_prefetch    = $stns::client::cached_prefetch,
   Optional[String]  $cache_dir          = $stns::client::cache_dir,
   Optional[Integer] $cache_ttl          = $stns::client::cache_ttl,
   Optional[Integer] $negative_cache_ttl = $stns::client::negative_cache_ttl,
