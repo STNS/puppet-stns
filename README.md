@@ -103,6 +103,8 @@ class { '::stns::client':
   libnss_stns_ensure => latest,
   handle_nsswitch    => true,
   handle_sshd_config => true,
+  cached_enable      => true,
+  cached_prefetch    => true,
 }
 ```
 
@@ -126,6 +128,8 @@ stns::client::http_proxy: 'http://proxy.example.com:1104'
 stns::client::libnss_stns_ensure: latest
 stns::client::handle_nsswitch: true
 stns::client::handle_sshd_config: true
+stns::client::cached_enable: true
+stns::client::cached_prefetch: true
 ```
 
 ## Reference
@@ -173,6 +177,8 @@ stns::client::handle_sshd_config: true
 - `libnss_stns_ensure`: What state the libnss-stns package should be in.
 - `handle_nsswitch`: Configure nsswitch.conf to use STNS. Valid options: a boolean. Default: false.
 - `handle_sshd_config`: Configure sshd\_config to use STNS. Valid options: a boolean. Default: false.
+- `cached_enable`: Enables use cached(cache-stnsd). Valid options: a boolean. Default: undef.
+- `cached_prefetch`: Enables prefetch of cached(cache-stnsd). Valid options: a boolean. Default: undef.
 
 #### Defined Types: `stns::server::users`
 
