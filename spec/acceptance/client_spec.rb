@@ -73,9 +73,7 @@ describe 'stns::client class' do
     its(:content) { is_expected.to match %r{^cache_dir = "/var/cache/stns"$} }
     its(:content) { is_expected.to match %r{^cache_ttl = 600$} }
     its(:content) { is_expected.to match %r{^negative_cache_ttl = 60$} }
-    its(:content) { is_expected.to match %r{^\[cached\]$} }
-    its(:content) { is_expected.to match %r{^cached_enable = true$} }
-    its(:content) { is_expected.to match %r{^cached_prefetch = true$} }
+    its(:content) { is_expected.to match %r{\n\[cached\]\nenable = true\nprefetch = true\n}m }
   end
 
   describe file('/etc/nsswitch.conf') do
