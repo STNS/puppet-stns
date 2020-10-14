@@ -20,6 +20,8 @@ class stns::client (
   Optional[Integer] $cache_ttl = undef,
   Optional[Integer] $negative_cache_ttl = undef,
   Optional[Boolean] $use_cached = undef,
+  Optional[Boolean] $cached_enable = undef,
+  Optional[Boolean] $cached_prefetch = undef,
   String            $libnss_stns_ensure = 'present',
   String            $cache_stnsd_ensure = 'present',
   Boolean           $handle_nsswitch    = false,

@@ -36,6 +36,8 @@ describe 'stns::client class' do
         libnss_stns_ensure => latest,
         handle_nsswitch    => true,
         handle_sshd_config => true,
+        cached_enable      => true,
+        cached_prefetch    => true,
       }
     EOS
   end
@@ -71,6 +73,7 @@ describe 'stns::client class' do
     its(:content) { is_expected.to match %r{^cache_dir = "/var/cache/stns"$} }
     its(:content) { is_expected.to match %r{^cache_ttl = 600$} }
     its(:content) { is_expected.to match %r{^negative_cache_ttl = 60$} }
+    its(:content) { is_expected.to match %r{\n\[cached\]\nenable = true\nprefetch = true\n}m }
   end
 
   describe file('/etc/nsswitch.conf') do

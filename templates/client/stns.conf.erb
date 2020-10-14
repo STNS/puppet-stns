@@ -50,3 +50,11 @@ negative_cache_ttl = <%= @negative_cache_ttl %>
 <%- if @use_cached -%>
 use_cached = <%= @use_cached %>
 <%- end -%>
+<%- if @cached_enable -%>
+
+[cached]
+enable = <%= @cached_enable %>
+<%- if @cached_prefetch -%>
+prefetch = <%= @cached_prefetch %>
+<%- end -%>
+<%- end -%>

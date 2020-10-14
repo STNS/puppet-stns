@@ -19,6 +19,8 @@ stns::client::libnss_stns_ensure: present
 stns::client::cache_stnsd_ensure: present
 stns::client::handle_nsswitch: false
 stns::client::handle_sshd_config: false
+stns::client::cached_enable: ~
+stns::client::cached_prefetch: ~
 
 stns::server::port: 1104
 stns::server::user: ~
