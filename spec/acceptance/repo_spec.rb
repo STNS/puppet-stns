@@ -29,10 +29,18 @@ describe 'stns class' do
     end
   end
 
-  context 'Debian', if: os[:family] =~ %r{^(ubuntu|debian)$} do
+  context 'Debian', if: os[:family] =~ %r{^debian$} do
     describe file('/etc/apt/sources.list.d/stns.list') do
       it { is_expected.to be_file }
       its(:content) { is_expected.to match %r{^deb\s+http://repo.stns.jp/debian/\s+stns\s+main$} }
+    end
+  end
+
+  context 'Ubuntu', if: os[:family] =~ %r{^Ubuntu$} do
+    codename = os[:distro][:codename]
+    describe file('/etc/apt/sources.list.d/stns.list') do
+      it { is_expected.to be_file }
+      its(:content) { is_expected.to match %r{^deb\s+http://repo.stns.jp/#{codename}/\s+stns\s+#{codename}$} }
     end
   end
 end
