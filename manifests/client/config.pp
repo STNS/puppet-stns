@@ -14,6 +14,7 @@ class stns::client::config (
   Optional[Integer] $request_timeout    = $stns::client::request_timeout,
   Optional[Integer] $request_retry      = $stns::client::request_retry,
   Optional[String]  $http_proxy         = $stns::client::http_proxy,
+  Optional[Boolean] $http_keepalive     = $stns::client::http_keepalive,
   Optional[Integer] $uid_shift          = $stns::client::uid_shift,
   Optional[Integer] $gid_shift          = $stns::client::gid_shift,
   Optional[Boolean] $cache              = $stns::client::cache,
