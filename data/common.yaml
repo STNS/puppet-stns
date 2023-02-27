@@ -9,6 +9,7 @@ stns::client::ssl_verify: ~
 stns::client::request_timeout: ~
 stns::client::request_retry: ~
 stns::client::http_proxy: ~
+stns::client::http_keepalive: ~
 stns::client::uid_shift: ~
 stns::client::gid_shift: ~
 stns::client::cache: ~

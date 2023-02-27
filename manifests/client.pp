@@ -13,6 +13,7 @@ class stns::client (
   Optional[Integer] $request_timeout = undef,
   Optional[Integer] $request_retry = undef,
   Optional[String]  $http_proxy = undef,
+  Optional[Boolean] $http_keepalive = undef,
   Optional[Integer] $uid_shift = undef,
   Optional[Integer] $gid_shift = undef,
   Optional[Boolean] $cache = undef,
