@@ -3,7 +3,7 @@ class stns::repo::apt {
     location => 'http://repo.stns.jp/debian/',
     release  => 'stns',
     key      => {
-      id     => '6BACCE33697C7E568D5C162F018A7A21B2EC51BA',
+      id     => 'ED9008B740C6735CB3EF098C37DE344F75E258B6',
       source => $::stns::repo::gpgkey_url,
     }
   }
