@@ -23,7 +23,7 @@ ssl_verify = <%= @ssl_verify %>
 <%- if @http_proxy -%>
 http_proxy = "<%= @http_proxy %>"
 <%- end -%>
-<%- if ! @http_keepalive -%>
+<%- if @http_keepalive || @http_keepalive == false -%>
 http_keepalive = <%= @http_keepalive %>
 <%- end -%>
 <%- if @uid_shift -%>
